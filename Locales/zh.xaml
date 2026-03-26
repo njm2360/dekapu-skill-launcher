@@ -1,0 +1,53 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- MainWindow -->
+    <sys:String x:Key="S.AppTitle">BuppaRengou 启动工具</sys:String>
+    <sys:String x:Key="S.BtnRefresh">刷新</sys:String>
+    <sys:String x:Key="S.BtnLaunch">启动</sys:String>
+    <sys:String x:Key="S.BtnSettings">设置</sys:String>
+    <sys:String x:Key="S.GrpOsc">OSC 锁定</sys:String>
+    <sys:String x:Key="S.BtnLock">锁定</sys:String>
+    <sys:String x:Key="S.BtnRelease">解除</sys:String>
+    <sys:String x:Key="S.ColName">名称</sys:String>
+    <sys:String x:Key="S.ColUsers">人数</sys:String>
+    <sys:String x:Key="S.UpdatedAt">更新时间：{0}</sys:String>
+    <sys:String x:Key="S.None">（无）</sys:String>
+
+    <!-- SettingsWindow -->
+    <sys:String x:Key="S.WndSettings">设置</sys:String>
+    <sys:String x:Key="S.LblProfile">配置文件:</sys:String>
+    <sys:String x:Key="S.LblExtraArgs">启动选项:</sys:String>
+    <sys:String x:Key="S.LblOscPort">OSC 端口:</sys:String>
+    <sys:String x:Key="S.LblOscAddress">OSC 地址:</sys:String>
+    <sys:String x:Key="S.LblApiUrl">API URL:</sys:String>
+    <sys:String x:Key="S.LblLauncher">启动器:</sys:String>
+    <sys:String x:Key="S.LblVr">VR:</sys:String>
+    <sys:String x:Key="S.ChkVr">以 VR 模式启动</sys:String>
+    <sys:String x:Key="S.LblVrcCheck">防止重复启动:</sys:String>
+    <sys:String x:Key="S.ChkVrcCheck">若 VRChat 已在运行则不启动</sys:String>
+    <sys:String x:Key="S.LblTheme">主题:</sys:String>
+    <sys:String x:Key="S.ThemeLight">浅色</sys:String>
+    <sys:String x:Key="S.ThemeDark">深色</sys:String>
+    <sys:String x:Key="S.ThemeSystem">系统</sys:String>
+    <sys:String x:Key="S.LblLang">语言:</sys:String>
+    <sys:String x:Key="S.BtnBrowse">浏览...</sys:String>
+    <sys:String x:Key="S.DlgBrowseTitle">选择 VRChat 启动器</sys:String>
+    <sys:String x:Key="S.DlgBrowseFilter">可执行文件 (*.exe)|*.exe</sys:String>
+    <sys:String x:Key="S.BtnOk">确定</sys:String>
+    <sys:String x:Key="S.BtnCancel">取消</sys:String>
+
+    <!-- Errors / Dialogs (code-behind) -->
+    <sys:String x:Key="S.ErrInput">输入错误</sys:String>
+    <sys:String x:Key="S.ErrProfileMsg">配置文件编号请输入 0 到 99 的整数</sys:String>
+    <sys:String x:Key="S.ErrPortMsg">端口号请输入 1 到 65535 的整数</sys:String>
+    <sys:String x:Key="S.ErrOscAddressMsg">OSC 地址必须以 / 开头</sys:String>
+    <sys:String x:Key="S.ErrOscTitle">OSC 错误</sys:String>
+    <sys:String x:Key="S.ErrTitle">错误</sys:String>
+    <sys:String x:Key="S.DlgConfirmTitle">确认</sys:String>
+    <sys:String x:Key="S.DlgLaunchMsg" xml:space="preserve">是否在以下实例中启动？&#x0a;&#x0a;名称: {0}</sys:String>
+    <sys:String x:Key="S.ErrNoLauncher" xml:space="preserve">找不到启动器:&#x0a;{0}</sys:String>
+<sys:String x:Key="S.VrcRunningMsg">VRChat 正在运行，无法启动。请先关闭 VRChat。</sys:String>
+
+</ResourceDictionary>

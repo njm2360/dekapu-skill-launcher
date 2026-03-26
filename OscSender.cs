@@ -1,7 +1,7 @@
 using System.Net.Sockets;
 using System.Text;
 
-namespace SimpleLauncherWinForms;
+namespace DekapuSkillLauncher;
 
 public static class OscSender
 {
@@ -15,8 +15,8 @@ public static class OscSender
             return buf;
         }
 
-        var addrBytes  = PadTo4(Encoding.ASCII.GetBytes(address + '\0'));
-        var tagBytes   = PadTo4(Encoding.ASCII.GetBytes(",i\0\0"));
+        var addrBytes = PadTo4(Encoding.ASCII.GetBytes(address + '\0'));
+        var tagBytes = PadTo4(Encoding.ASCII.GetBytes(",i\0\0"));
         var valueBytes = new byte[]
         {
             (byte)(value >> 24), (byte)(value >> 16),

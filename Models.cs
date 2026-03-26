@@ -1,16 +1,6 @@
 using System.Text.Json;
 
-namespace SimpleLauncherWinForms;
-
-public record WorldRef(string Id);
-
-public record GroupInstance(string InstanceId, WorldRef World)
-{
-    public static GroupInstance FromJson(JsonElement d) => new(
-        InstanceId: d.GetProperty("instanceId").GetString()!,
-        World: new WorldRef(d.GetProperty("world").GetProperty("id").GetString()!)
-    );
-}
+namespace DekapuSkillLauncher;
 
 public record InstanceInfo(
     string Id,

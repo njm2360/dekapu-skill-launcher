@@ -1,0 +1,118 @@
+<Window x:Class="DekapuSkillLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="430" Height="240"
+        ResizeMode="NoResize"
+        FontFamily="Yu Gothic UI"
+        FontSize="13"
+        Background="{DynamicResource WindowBg}"
+        Foreground="{DynamicResource WindowFg}"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing">
+    <Grid Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="110"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ヘッダー -->
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,5">
+            <Button Content="{DynamicResource S.BtnRefresh}" Width="72" Height="26" Margin="0,0,4,0" Click="RefreshBtn_Click"/>
+            <Button x:Name="_launchBtn" Content="{DynamicResource S.BtnLaunch}" Width="72" Height="26" Margin="0,0,4,0" IsEnabled="False" Click="LaunchBtn_Click"/>
+            <Button Content="{DynamicResource S.BtnSettings}" Width="72" Height="26" Click="SettingsBtn_Click"/>
+        </StackPanel>
+
+        <!-- インスタンス一覧 -->
+        <DataGrid x:Name="_table" Grid.Row="1" Grid.Column="0"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  HeadersVisibility="Column"
+                  CanUserResizeRows="False"
+                  GridLinesVisibility="None"
+                  BorderThickness="1"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  SelectionChanged="Table_SelectionChanged">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Foreground" Value="{DynamicResource WindowFg}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsClosed}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ClosedRowBg}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource ClosedRowFg}"/>
+                        </DataTrigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource RowSelectedBg}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Binding="{Binding DisplayNameOrName}"/>
+                <DataGridTextColumn Width="60" Binding="{Binding UserCount}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- ローディングオーバーレイ -->
+        <Grid x:Name="_loadingOverlay" Grid.Row="1" Grid.Column="0"
+              Visibility="Collapsed" Panel.ZIndex="10">
+            <Border Background="{DynamicResource LoadingOverlayBg}"/>
+            <Ellipse Width="44" Height="44"
+                     Stroke="#0078D4" StrokeThickness="5"
+                     StrokeDashArray="10 5"
+                     VerticalAlignment="Center" HorizontalAlignment="Center"
+                     RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <RotateTransform x:Name="_spinnerRotate"/>
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="_spinnerRotate"
+                                                 Storyboard.TargetProperty="Angle"
+                                                 From="0" To="360" Duration="0:0:0.8"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+        </Grid>
+
+        <!-- フッター -->
+        <TextBlock x:Name="_updatedLabel" Grid.Row="2" Grid.Column="0"
+                   VerticalAlignment="Center" Margin="0,4,0,0"/>
+
+        <!-- OSCボタン -->
+        <GroupBox x:Name="_oscGroup" Grid.Column="1" Grid.RowSpan="3" Margin="6,0,0,0"
+                  Header="{DynamicResource S.GrpOsc}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="_fixedBtn" Grid.Row="0" Content="{DynamicResource S.BtnLock}"
+                        FontSize="24" FontWeight="Bold" Margin="0,0,0,4"
+                        Click="FixedBtn_Click"/>
+                <Button x:Name="_releaseBtn" Grid.Row="1" Content="{DynamicResource S.BtnRelease}"
+                        Height="26"
+                        Click="ReleaseBtn_Click"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

@@ -3,7 +3,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!-- MainWindow -->
-    <sys:String x:Key="S.AppTitle">BuppaRengou 런처</sys:String>
+    <sys:String x:Key="S.AppTitle">Dekapu 런처</sys:String>
     <sys:String x:Key="S.BtnRefresh">새로고침</sys:String>
     <sys:String x:Key="S.BtnLaunch">실행</sys:String>
     <sys:String x:Key="S.BtnSettings">설정</sys:String>

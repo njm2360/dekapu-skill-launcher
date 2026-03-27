@@ -3,7 +3,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!-- MainWindow -->
-    <sys:String x:Key="S.AppTitle">BuppaRengou Launcher</sys:String>
+    <sys:String x:Key="S.AppTitle">Dekapu Launcher</sys:String>
     <sys:String x:Key="S.BtnRefresh">Refresh</sys:String>
     <sys:String x:Key="S.BtnLaunch">Launch</sys:String>
     <sys:String x:Key="S.BtnSettings">Settings</sys:String>

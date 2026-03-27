@@ -3,7 +3,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!-- MainWindow -->
-    <sys:String x:Key="S.AppTitle">BuppaRengou 启动工具</sys:String>
+    <sys:String x:Key="S.AppTitle">Dekapu 启动工具</sys:String>
     <sys:String x:Key="S.BtnRefresh">刷新</sys:String>
     <sys:String x:Key="S.BtnLaunch">启动</sys:String>
     <sys:String x:Key="S.BtnSettings">设置</sys:String>

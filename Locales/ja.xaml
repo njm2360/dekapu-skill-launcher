@@ -3,7 +3,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!-- MainWindow -->
-    <sys:String x:Key="S.AppTitle">ブッパ連合起動ツール</sys:String>
+    <sys:String x:Key="S.AppTitle">でかプランチャー</sys:String>
     <sys:String x:Key="S.BtnRefresh">更新</sys:String>
     <sys:String x:Key="S.BtnLaunch">起動</sys:String>
     <sys:String x:Key="S.BtnSettings">設定</sys:String>

@@ -14,21 +14,37 @@ public partial class MainWindow : Window
     private static readonly TimeZoneInfo TZ =
         TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
 
+    private static readonly GroupItem[] Groups = GroupDefinitions.Groups;
+
     private readonly InstanceService _ctrl;
     private readonly AppSettings _settings = AppSettings.Load();
     private readonly ObservableCollection<InstanceRow> _rows = new();
     private DateTimeOffset? _lastUpdatedAt;
+    private bool _groupComboInitializing;
 
     public MainWindow()
     {
         _ctrl = new InstanceService(_settings);
         InitializeComponent();
         _table.ItemsSource = _rows;
+        InitGroupCombo();
         ApplyLocale();
     }
 
+    private void InitGroupCombo()
+    {
+        _groupComboInitializing = true;
+        _groupCombo.ItemsSource = Groups;
+        var selected = Groups.FirstOrDefault(g => g.Id == _settings.SelectedGroupId) ?? Groups[0];
+        _groupCombo.SelectedItem = selected;
+        _groupComboInitializing = false;
+    }
+
+    private string CurrentGroupId =>
+        (_groupCombo.SelectedItem as GroupItem)?.Id ?? Groups[0].Id;
+
     private async void Window_Loaded(object sender, RoutedEventArgs e)
-        => await UpdateInstancesAsync(refresh: true);
+        => await UpdateInstancesAsync(refresh: false);
 
     private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
     {
@@ -38,6 +54,15 @@ public partial class MainWindow : Window
             MessageBox.Show(ex.Message, LocaleManager.Get("S.ErrTitle"),
                 MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+    }
+
+    private async void GroupCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (_groupComboInitializing) return;
+        var groupId = CurrentGroupId;
+        _settings.SelectedGroupId = groupId;
+        // キャッシュがない場合のみ取得（refresh: false）
+        await UpdateInstancesAsync(refresh: false);
     }
 
     private async void RefreshBtn_Click(object sender, RoutedEventArgs e)
@@ -140,7 +165,7 @@ public partial class MainWindow : Window
         InstanceCache cache;
         try
         {
-            cache = await _ctrl.GetInstancesAsync(refresh);
+            cache = await _ctrl.GetInstancesAsync(CurrentGroupId, refresh);
         }
         catch (Exception ex)
         {
@@ -185,7 +210,7 @@ public partial class MainWindow : Window
         InstanceInfo inst;
         try
         {
-            inst = _ctrl.GetInstanceById(row.Id);
+            inst = _ctrl.GetInstanceById(CurrentGroupId, row.Id);
         }
         catch (Exception ex)
         {

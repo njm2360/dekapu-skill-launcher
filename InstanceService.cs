@@ -6,26 +6,27 @@ namespace DekapuSkillLauncher;
 public class InstanceService(AppSettings settings)
 {
     private static readonly HttpClient _client = new() { Timeout = TimeSpan.FromSeconds(30) };
-    private InstanceCache? _cache;
+    private readonly Dictionary<string, InstanceCache> _caches = new();
 
-    public async Task<InstanceCache> GetInstancesAsync(bool refresh = false)
+    public async Task<InstanceCache> GetInstancesAsync(string groupId, bool refresh = false)
     {
-        if (!refresh && _cache is not null)
-            return _cache;
+        if (!refresh && _caches.TryGetValue(groupId, out var cached))
+            return cached;
 
-        var json = await _client.GetStringAsync($"{settings.ApiBaseUrl}/instances");
+        var json = await _client.GetStringAsync($"{settings.ApiBaseUrl}/instances/{groupId}");
         var arr = JsonSerializer.Deserialize<JsonElement[]>(json)!;
         var instances = arr.Select(InstanceInfo.FromJson).ToList();
-        _cache = new InstanceCache(instances, DateTimeOffset.UtcNow);
-        return _cache;
+        var cache = new InstanceCache(instances, DateTimeOffset.UtcNow);
+        _caches[groupId] = cache;
+        return cache;
     }
 
-    public InstanceInfo GetInstanceById(string instId)
+    public InstanceInfo GetInstanceById(string groupId, string instId)
     {
-        if (_cache is null)
+        if (!_caches.TryGetValue(groupId, out var cache))
             throw new InvalidOperationException("キャッシュが存在しません");
 
-        return _cache.Instances.FirstOrDefault(i => i.Id == instId)
+        return cache.Instances.FirstOrDefault(i => i.Id == instId)
             ?? throw new InvalidOperationException("インスタンスが見つかりません");
     }
 }

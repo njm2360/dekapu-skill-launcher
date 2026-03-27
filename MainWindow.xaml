@@ -21,7 +21,15 @@
         </Grid.RowDefinitions>
 
         <!-- ヘッダー -->
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,5">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,5">
+            <ComboBox x:Name="_groupCombo" Width="160" Height="26" Margin="0,0,4,0"
+                      SelectionChanged="GroupCombo_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Button Content="{DynamicResource S.BtnRefresh}" Width="72" Height="26" Margin="0,0,4,0" Click="RefreshBtn_Click"/>
             <Button x:Name="_launchBtn" Content="{DynamicResource S.BtnLaunch}" Width="72" Height="26" Margin="0,0,4,0" IsEnabled="False" Click="LaunchBtn_Click"/>
             <Button Content="{DynamicResource S.BtnSettings}" Width="72" Height="26" Click="SettingsBtn_Click"/>
@@ -95,11 +103,11 @@
         </Grid>
 
         <!-- フッター -->
-        <TextBlock x:Name="_updatedLabel" Grid.Row="2" Grid.Column="0"
+        <TextBlock x:Name="_updatedLabel" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                    VerticalAlignment="Center" Margin="0,4,0,0"/>
 
         <!-- OSCボタン -->
-        <GroupBox x:Name="_oscGroup" Grid.Column="1" Grid.RowSpan="3" Margin="6,0,0,0"
+        <GroupBox x:Name="_oscGroup" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Margin="6,0,0,0"
                   Header="{DynamicResource S.GrpOsc}">
             <Grid>
                 <Grid.RowDefinitions>

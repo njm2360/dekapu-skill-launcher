@@ -15,6 +15,7 @@ public class AppSettings
     public string LauncherPath { get; set; } = @"C:\Program Files (x86)\Steam\steamapps\common\VRChat\launch.exe";
     public bool CheckVrcProcess { get; set; } = true;
     public string Theme { get; set; } = "System";
+    public string SelectedGroupId { get; set; } = GroupDefinitions.Groups[0].Id;
     public string Language { get; set; } =
         System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName switch
         {
@@ -36,7 +37,12 @@ public class AppSettings
         try
         {
             if (File.Exists(SettingsPath))
-                return JsonSerializer.Deserialize<AppSettings>(File.ReadAllText(SettingsPath)) ?? new();
+            {
+                var s = JsonSerializer.Deserialize<AppSettings>(File.ReadAllText(SettingsPath)) ?? new();
+                if (GroupDefinitions.Groups.All(g => g.Id != s.SelectedGroupId))
+                    s.SelectedGroupId = GroupDefinitions.Groups[0].Id;
+                return s;
+            }
         }
         catch { }
         return new();

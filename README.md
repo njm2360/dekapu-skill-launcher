@@ -1,6 +1,6 @@
-# スキルブッパ連合ランチャー
+# でかプ連合ランチャー
 
-スキルブッパ連合のインスタンス一覧を取得し、ワンクリックで起動できるWindowsデスクトップアプリです。
+でかプのグループインスタンス一覧を取得し、ワンクリックで起動できるWindowsデスクトップアプリです。
 
 ![.NET 8](https://img.shields.io/badge/.NET-8.0-blue) ![Platform](https://img.shields.io/badge/platform-Windows-lightgrey) ![License](https://img.shields.io/badge/license-BSD--2--Clause-blue)
 

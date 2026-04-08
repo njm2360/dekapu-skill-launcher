@@ -1,44 +1,46 @@
 using System.Windows;
 using Microsoft.Win32;
+using DekapuSkillLauncher.Models;
+using DekapuSkillLauncher.Services;
 
-namespace DekapuSkillLauncher;
+namespace DekapuSkillLauncher.Views;
 
 public partial class SettingsWindow : Window
 {
     public int Profile { get; private set; }
-    public string ExtraArgs { get; private set; } = "";
     public int OscPort { get; private set; }
     public string OscAddress { get; private set; } = "";
-    public bool VrEnabled { get; private set; }
     public bool CheckVrcProcess { get; private set; }
     public string LauncherPath { get; private set; } = "";
     public string Theme { get; private set; } = "System";
-    public string AppLanguage { get; private set; } = "ja";
+    public string AppLanguage { get; private set; } = LocaleManager.DefaultLanguage;
 
-    public SettingsWindow(int profile, string extraArgs, int oscPort, string oscAddress,
-                          bool vrEnabled, bool checkVrcProcess, string launcherPath,
-                          string theme, string language)
+    public LaunchOptions LaunchOptions { get; private set; } = new();
+
+    private LaunchOptions _launchDraft;
+
+    public SettingsWindow(AppSettings settings)
     {
         InitializeComponent();
-        _profileBox.Text = profile.ToString();
-        _extraArgsBox.Text = extraArgs;
-        _oscPortBox.Text = oscPort.ToString();
-        _oscAddressBox.Text = oscAddress;
-        _vrCheck.IsChecked = vrEnabled;
-        _vrcCheckBox.IsChecked = checkVrcProcess;
-        _launcherPathBox.Text = launcherPath;
 
-        switch (theme)
+        _launchDraft = settings.LaunchOptions.Clone();
+
+        _profileBox.Text = settings.Profile.ToString();
+        _oscPortBox.Text = settings.OscPort.ToString();
+        _oscAddressBox.Text = settings.OscAddress;
+        _vrcCheckBox.IsChecked = settings.CheckVrcProcess;
+        _launcherPathBox.Text = settings.LauncherPath;
+
+        switch (settings.Theme)
         {
-            case "Light": _themeLightRadio.IsChecked  = true; break;
-            case "Dark":  _themeDarkRadio.IsChecked   = true; break;
-            default:      _themeSystemRadio.IsChecked = true; break;
+            case "Light": _themeLightRadio.IsChecked = true; break;
+            case "Dark": _themeDarkRadio.IsChecked = true; break;
+            default: _themeSystemRadio.IsChecked = true; break;
         }
 
-        if (language == "en")      _langEnRadio.IsChecked = true;
-        else if (language == "zh") _langZhRadio.IsChecked = true;
-        else if (language == "ko") _langKoRadio.IsChecked = true;
-        else                       _langJaRadio.IsChecked = true;
+        _langCombo.ItemsSource = LocaleManager.SupportedLanguages;
+        _langCombo.SelectedItem = LocaleManager.SupportedLanguages.FirstOrDefault(l => l.Code == settings.Language)
+                                  ?? LocaleManager.SupportedLanguages[0];
     }
 
     private void OkBtn_Click(object sender, RoutedEventArgs e)
@@ -64,16 +66,18 @@ public partial class SettingsWindow : Window
         }
 
         Profile = profile;
-        ExtraArgs = _extraArgsBox.Text.Trim();
         OscPort = oscPort;
         OscAddress = oscAddress;
-        VrEnabled = _vrCheck.IsChecked == true;
         CheckVrcProcess = _vrcCheckBox.IsChecked == true;
         LauncherPath = _launcherPathBox.Text.Trim();
         Theme = _themeDarkRadio.IsChecked == true ? "Dark"
               : _themeLightRadio.IsChecked == true ? "Light"
               : "System";
-        AppLanguage = _langEnRadio.IsChecked == true ? "en" : _langZhRadio.IsChecked == true ? "zh" : _langKoRadio.IsChecked == true ? "ko" : "ja";
+        AppLanguage = (_langCombo.SelectedItem as LanguageItem)?.Code
+                      ?? LocaleManager.DefaultLanguage;
+
+        LaunchOptions = _launchDraft;
+
         DialogResult = true;
     }
 
@@ -87,6 +91,13 @@ public partial class SettingsWindow : Window
         };
         if (dlg.ShowDialog(this) == true)
             _launcherPathBox.Text = dlg.FileName;
+    }
+
+    private void LaunchOptionsBtn_Click(object sender, RoutedEventArgs e)
+    {
+        var dlg = new LaunchOptionsWindow(_launchDraft) { Owner = this };
+        if (dlg.ShowDialog() == true)
+            _launchDraft = dlg.LaunchOptions;
     }
 
     private void CancelBtn_Click(object sender, RoutedEventArgs e)

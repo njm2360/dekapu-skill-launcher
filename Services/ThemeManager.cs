@@ -1,7 +1,7 @@
 using Microsoft.Win32;
 using System.Windows;
 
-namespace DekapuSkillLauncher;
+namespace DekapuSkillLauncher.Services;
 
 public static class ThemeManager
 {

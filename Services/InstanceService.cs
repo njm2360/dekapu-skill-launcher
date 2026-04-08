@@ -1,12 +1,13 @@
 using System.Net.Http;
 using System.Text.Json;
+using DekapuSkillLauncher.Models;
 
-namespace DekapuSkillLauncher;
+namespace DekapuSkillLauncher.Services;
 
 public class InstanceService(AppSettings settings)
 {
     private static readonly HttpClient _client = new() { Timeout = TimeSpan.FromSeconds(30) };
-    private readonly Dictionary<string, InstanceCache> _caches = new();
+    private readonly Dictionary<string, InstanceCache> _caches = [];
 
     public async Task<InstanceCache> GetInstancesAsync(string groupId, bool refresh = false)
     {

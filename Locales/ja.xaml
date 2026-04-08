@@ -19,6 +19,7 @@
     <sys:String x:Key="S.WndSettings">設定</sys:String>
     <sys:String x:Key="S.LblProfile">プロファイル:</sys:String>
     <sys:String x:Key="S.LblExtraArgs">起動オプション:</sys:String>
+    <sys:String x:Key="S.BtnLaunchOptions">起動オプション...</sys:String>
     <sys:String x:Key="S.LblOscPort">OSCポート:</sys:String>
     <sys:String x:Key="S.LblOscAddress">OSCアドレス:</sys:String>
     <sys:String x:Key="S.LblApiUrl">API URL:</sys:String>
@@ -37,6 +38,65 @@
     <sys:String x:Key="S.DlgBrowseFilter">実行ファイル (*.exe)|*.exe</sys:String>
     <sys:String x:Key="S.BtnOk">OK</sys:String>
     <sys:String x:Key="S.BtnCancel">キャンセル</sys:String>
+
+    <!-- CpuAffinityWindow -->
+    <sys:String x:Key="S.WndCpuAffinity">CPUアフィニティ設定</sys:String>
+    <sys:String x:Key="S.GrpCores">コア選択</sys:String>
+    <sys:String x:Key="S.BtnSelectAll">全選択</sys:String>
+    <sys:String x:Key="S.BtnClearAll">全解除</sys:String>
+    <sys:String x:Key="S.LblAffinityHex">16進マスク:</sys:String>
+    <sys:String x:Key="S.TipAffinityBtn">コア選択ダイアログを開く...</sys:String>
+
+    <!-- LaunchOptionsWindow -->
+    <sys:String x:Key="S.WndLaunchOptions">起動オプション</sys:String>
+    <sys:String x:Key="S.GrpBasic">基本</sys:String>
+    <sys:String x:Key="S.LblFps">FPS制限:</sys:String>
+    <sys:String x:Key="S.TipFps">0または空欄で制限なし</sys:String>
+    <sys:String x:Key="S.LblMidi">MIDIデバイス:</sys:String>
+    <sys:String x:Key="S.GrpLaunchOsc">OSC設定</sys:String>
+    <sys:String x:Key="S.ChkOsc">設定を変更する</sys:String>
+    <sys:String x:Key="S.LblOscInPort">受信ポート:</sys:String>
+    <sys:String x:Key="S.LblOscOutIp">送信先IP:</sys:String>
+    <sys:String x:Key="S.LblOscOutPort">送信先ポート:</sys:String>
+    <sys:String x:Key="S.GrpPerformance">パフォーマンス</sys:String>
+    <sys:String x:Key="S.LblAffinity">CPUアフィニティ:</sys:String>
+    <sys:String x:Key="S.LblProcessPriority">プロセス優先度:</sys:String>
+    <sys:String x:Key="S.LblMainThreadPriority">メインスレッド優先度:</sys:String>
+    <sys:String x:Key="S.PrioIdle">アイドル</sys:String>
+    <sys:String x:Key="S.PrioLowest">最低</sys:String>
+    <sys:String x:Key="S.PrioBelowNormal">通常以下</sys:String>
+    <sys:String x:Key="S.PrioNormal">通常</sys:String>
+    <sys:String x:Key="S.PrioAboveNormal">通常以上</sys:String>
+    <sys:String x:Key="S.PrioHigh">高</sys:String>
+    <sys:String x:Key="S.PrioHighest">最高</sys:String>
+    <sys:String x:Key="S.GrpDisplay">画面</sys:String>
+    <sys:String x:Key="S.LblScreenWidth">画面幅:</sys:String>
+    <sys:String x:Key="S.LblScreenHeight">画面高:</sys:String>
+    <sys:String x:Key="S.LblScreenFullscreen">表示モード:</sys:String>
+    <sys:String x:Key="S.FullscreenWindowed">ウィンドウ</sys:String>
+    <sys:String x:Key="S.FullscreenFullscreen">フルスクリーン</sys:String>
+    <sys:String x:Key="S.LblMonitor">モニター番号:</sys:String>
+    <sys:String x:Key="S.TipMonitor">1から始まるモニター番号</sys:String>
+    <sys:String x:Key="S.LblHwVideoDecoding">ハードウェアデコード:</sys:String>
+    <sys:String x:Key="S.LblAmdStutter">AMD最適化:</sys:String>
+    <sys:String x:Key="S.ChkDisableAmdStutter">無効化 (--disable-amd-stutter-workaround)</sys:String>
+    <sys:String x:Key="S.GrpDebug">デバッグ</sys:String>
+    <sys:String x:Key="S.ChkWatchWorlds">ワールドを監視 (--watch-worlds)</sys:String>
+    <sys:String x:Key="S.ChkWatchAvatars">アバターを監視 (--watch-avatars)</sys:String>
+    <sys:String x:Key="S.ChkDebugGui">デバッグGUI (--enable-debug-gui)</sys:String>
+    <sys:String x:Key="S.ChkSdkLogLevels">SDK ログ (--enable-sdk-log-levels)</sys:String>
+    <sys:String x:Key="S.ChkUdonDebugLogging">Udon デバッグ (--enable-udon-debug-logging)</sys:String>
+    <sys:String x:Key="S.ChkSkipRegistryInstall">レジストリ更新をスキップ (--skip-registry-install)</sys:String>
+    <sys:String x:Key="S.ChkEnforceWorldServerChecks">サーバーチェックを有効化 (--enforce-world-server-checks)</sys:String>
+    <sys:String x:Key="S.LblIgnoreTrackers">トラッカー除外:</sys:String>
+    <sys:String x:Key="S.TipIgnoreTrackers">シリアル番号をカンマ区切りで入力</sys:String>
+    <sys:String x:Key="S.GrpExtraArgs">追加引数</sys:String>
+    <sys:String x:Key="S.ErrFpsMsg">FPSは0以上の整数で入力してください</sys:String>
+    <sys:String x:Key="S.ErrOscInPortMsg">受信ポートは1〜65535の整数で入力してください</sys:String>
+    <sys:String x:Key="S.ErrOscOutPortMsg">送信ポートは1〜65535の整数で入力してください</sys:String>
+    <sys:String x:Key="S.ErrScreenWidthMsg">画面幅は正の整数で入力してください</sys:String>
+    <sys:String x:Key="S.ErrScreenHeightMsg">画面高は正の整数で入力してください</sys:String>
+    <sys:String x:Key="S.ErrMonitorMsg">モニター番号は1以上の整数で入力してください</sys:String>
 
     <!-- Errors / Dialogs (code-behind) -->
     <sys:String x:Key="S.ErrInput">入力エラー</sys:String>

@@ -19,6 +19,7 @@
     <sys:String x:Key="S.WndSettings">Settings</sys:String>
     <sys:String x:Key="S.LblProfile">Profile:</sys:String>
     <sys:String x:Key="S.LblExtraArgs">Launch Args:</sys:String>
+    <sys:String x:Key="S.BtnLaunchOptions">Launch Options...</sys:String>
     <sys:String x:Key="S.LblOscPort">OSC Port:</sys:String>
     <sys:String x:Key="S.LblOscAddress">OSC Address:</sys:String>
     <sys:String x:Key="S.LblApiUrl">API URL:</sys:String>
@@ -37,6 +38,65 @@
     <sys:String x:Key="S.DlgBrowseFilter">Executable (*.exe)|*.exe</sys:String>
     <sys:String x:Key="S.BtnOk">OK</sys:String>
     <sys:String x:Key="S.BtnCancel">Cancel</sys:String>
+
+    <!-- CpuAffinityWindow -->
+    <sys:String x:Key="S.WndCpuAffinity">CPU Affinity</sys:String>
+    <sys:String x:Key="S.GrpCores">Cores</sys:String>
+    <sys:String x:Key="S.BtnSelectAll">Select All</sys:String>
+    <sys:String x:Key="S.BtnClearAll">Clear All</sys:String>
+    <sys:String x:Key="S.LblAffinityHex">Hex Mask:</sys:String>
+    <sys:String x:Key="S.TipAffinityBtn">Open core selector...</sys:String>
+
+    <!-- LaunchOptionsWindow -->
+    <sys:String x:Key="S.WndLaunchOptions">Launch Options</sys:String>
+    <sys:String x:Key="S.GrpBasic">Basic</sys:String>
+    <sys:String x:Key="S.LblFps">FPS Limit:</sys:String>
+    <sys:String x:Key="S.TipFps">0 or blank for unlimited</sys:String>
+    <sys:String x:Key="S.LblMidi">MIDI Device:</sys:String>
+    <sys:String x:Key="S.GrpLaunchOsc">OSC Settings</sys:String>
+    <sys:String x:Key="S.ChkOsc">Override settings</sys:String>
+    <sys:String x:Key="S.LblOscInPort">In Port:</sys:String>
+    <sys:String x:Key="S.LblOscOutIp">Out IP:</sys:String>
+    <sys:String x:Key="S.LblOscOutPort">Out Port:</sys:String>
+    <sys:String x:Key="S.GrpPerformance">Performance</sys:String>
+    <sys:String x:Key="S.LblAffinity">CPU Affinity:</sys:String>
+    <sys:String x:Key="S.LblProcessPriority">Process Priority:</sys:String>
+    <sys:String x:Key="S.LblMainThreadPriority">Main Thread Priority:</sys:String>
+    <sys:String x:Key="S.PrioIdle">Idle</sys:String>
+    <sys:String x:Key="S.PrioLowest">Lowest</sys:String>
+    <sys:String x:Key="S.PrioBelowNormal">Below Normal</sys:String>
+    <sys:String x:Key="S.PrioNormal">Normal</sys:String>
+    <sys:String x:Key="S.PrioAboveNormal">Above Normal</sys:String>
+    <sys:String x:Key="S.PrioHigh">High</sys:String>
+    <sys:String x:Key="S.PrioHighest">Highest</sys:String>
+    <sys:String x:Key="S.GrpDisplay">Display</sys:String>
+    <sys:String x:Key="S.LblScreenWidth">Screen Width:</sys:String>
+    <sys:String x:Key="S.LblScreenHeight">Screen Height:</sys:String>
+    <sys:String x:Key="S.LblScreenFullscreen">Display Mode:</sys:String>
+    <sys:String x:Key="S.FullscreenWindowed">Windowed</sys:String>
+    <sys:String x:Key="S.FullscreenFullscreen">Fullscreen</sys:String>
+    <sys:String x:Key="S.LblMonitor">Monitor:</sys:String>
+    <sys:String x:Key="S.TipMonitor">1-based monitor index</sys:String>
+    <sys:String x:Key="S.LblHwVideoDecoding">HW Video Decoding:</sys:String>
+    <sys:String x:Key="S.LblAmdStutter">AMD Optimization:</sys:String>
+    <sys:String x:Key="S.ChkDisableAmdStutter">Disable (--disable-amd-stutter-workaround)</sys:String>
+    <sys:String x:Key="S.GrpDebug">Debug</sys:String>
+    <sys:String x:Key="S.ChkWatchWorlds">Watch Worlds (--watch-worlds)</sys:String>
+    <sys:String x:Key="S.ChkWatchAvatars">Watch Avatars (--watch-avatars)</sys:String>
+    <sys:String x:Key="S.ChkDebugGui">Debug GUI (--enable-debug-gui)</sys:String>
+    <sys:String x:Key="S.ChkSdkLogLevels">SDK Log Levels (--enable-sdk-log-levels)</sys:String>
+    <sys:String x:Key="S.ChkUdonDebugLogging">Udon Debug Logging (--enable-udon-debug-logging)</sys:String>
+    <sys:String x:Key="S.ChkSkipRegistryInstall">Skip Registry Install (--skip-registry-install)</sys:String>
+    <sys:String x:Key="S.ChkEnforceWorldServerChecks">Enforce World Server Checks (--enforce-world-server-checks)</sys:String>
+    <sys:String x:Key="S.LblIgnoreTrackers">Ignore Trackers:</sys:String>
+    <sys:String x:Key="S.TipIgnoreTrackers">Comma-separated serial numbers</sys:String>
+    <sys:String x:Key="S.GrpExtraArgs">Extra Arguments</sys:String>
+    <sys:String x:Key="S.ErrFpsMsg">FPS must be a non-negative integer</sys:String>
+    <sys:String x:Key="S.ErrOscInPortMsg">In port must be an integer from 1 to 65535</sys:String>
+    <sys:String x:Key="S.ErrOscOutPortMsg">Out port must be an integer from 1 to 65535</sys:String>
+    <sys:String x:Key="S.ErrScreenWidthMsg">Screen width must be a positive integer</sys:String>
+    <sys:String x:Key="S.ErrScreenHeightMsg">Screen height must be a positive integer</sys:String>
+    <sys:String x:Key="S.ErrMonitorMsg">Monitor must be an integer of 1 or greater</sys:String>
 
     <!-- Errors / Dialogs (code-behind) -->
     <sys:String x:Key="S.ErrInput">Input Error</sys:String>

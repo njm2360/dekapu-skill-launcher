@@ -5,7 +5,10 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DekapuSkillLauncher;
+using DekapuSkillLauncher.Models;
+using DekapuSkillLauncher.Services;
+
+namespace DekapuSkillLauncher.Views;
 
 public record InstanceRow(string Id, string DisplayNameOrName, int UserCount, bool IsClosed);
 
@@ -14,7 +17,7 @@ public partial class MainWindow : Window
     private static readonly TimeZoneInfo TZ =
         TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
 
-    private static readonly GroupItem[] Groups = GroupDefinitions.Groups;
+    private static readonly Models.GroupItem[] Groups = GroupDefinitions.Groups;
 
     private readonly InstanceService _ctrl;
     private readonly AppSettings _settings = AppSettings.Load();
@@ -41,7 +44,7 @@ public partial class MainWindow : Window
     }
 
     private string CurrentGroupId =>
-        (_groupCombo.SelectedItem as GroupItem)?.Id ?? Groups[0].Id;
+        (_groupCombo.SelectedItem as Models.GroupItem)?.Id ?? Groups[0].Id;
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
         => await UpdateInstancesAsync(refresh: false);
@@ -110,26 +113,19 @@ public partial class MainWindow : Window
 
     private void OpenSettings()
     {
-        var dlg = new SettingsWindow(
-            _settings.Profile, _settings.ExtraArgs,
-            _settings.OscPort, _settings.OscAddress,
-            _settings.VrEnabled, _settings.CheckVrcProcess,
-            _settings.LauncherPath, _settings.Theme, _settings.Language)
-        {
-            Owner = this
-        };
+        var dlg = new SettingsWindow(_settings) { Owner = this };
         if (dlg.ShowDialog() != true)
             return;
 
         _settings.Profile = dlg.Profile;
-        _settings.ExtraArgs = dlg.ExtraArgs;
         _settings.OscPort = dlg.OscPort;
         _settings.OscAddress = dlg.OscAddress;
-        _settings.VrEnabled = dlg.VrEnabled;
         _settings.CheckVrcProcess = dlg.CheckVrcProcess;
         _settings.LauncherPath = dlg.LauncherPath;
         _settings.Theme = dlg.Theme;
         _settings.Language = dlg.AppLanguage;
+        _settings.LaunchOptions = dlg.LaunchOptions;
+
         try { _settings.Save(); }
         catch (Exception ex)
         {
@@ -203,7 +199,7 @@ public partial class MainWindow : Window
         _loadingOverlay.Visibility = loading ? Visibility.Visible : Visibility.Collapsed;
     }
 
-    private void LaunchSelected()
+    private void LaunchSelected(bool silent = false)
     {
         if (_table.SelectedItem is not InstanceRow row) return;
 
@@ -219,13 +215,27 @@ public partial class MainWindow : Window
             return;
         }
 
-        var name = inst.DisplayName ?? inst.Name;
-        var confirm = MessageBox.Show(
-            string.Format(LocaleManager.Get("S.DlgLaunchMsg"), name),
-            LocaleManager.Get("S.DlgConfirmTitle"),
-            MessageBoxButton.YesNo, MessageBoxImage.Question);
-        if (confirm != MessageBoxResult.Yes) return;
+        if (!silent)
+        {
+            var name = inst.DisplayName ?? inst.Name;
+            var confirm = MessageBox.Show(
+                string.Format(LocaleManager.Get("S.DlgLaunchMsg"), name),
+                LocaleManager.Get("S.DlgConfirmTitle"),
+                MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (confirm != MessageBoxResult.Yes) return;
+        }
 
+        Launch(inst);
+    }
+
+    private void Launch(InstanceInfo inst)
+    {
+        var url = $"vrchat://launch?ref={Assembly.GetExecutingAssembly().GetName().Name}&id={inst.Id}&shortName={inst.ShortName}";
+        Launch(url);
+    }
+
+    private void Launch(string? url = null)
+    {
         if (_settings.CheckVrcProcess && Process.GetProcessesByName("VRChat").Length > 0)
         {
             MessageBox.Show(LocaleManager.Get("S.VrcRunningMsg"),
@@ -241,19 +251,18 @@ public partial class MainWindow : Window
             return;
         }
 
-        var url = $"vrchat://launch?ref={Assembly.GetExecutingAssembly().GetName().Name}&id={inst.Id}&shortName={inst.ShortName}";
         var psi = new ProcessStartInfo
         {
             FileName = _settings.LauncherPath,
             UseShellExecute = false,
         };
-        psi.ArgumentList.Add(url);
+        if (url is not null)
+            psi.ArgumentList.Add(url);
         if (_settings.Profile != 0)
             psi.ArgumentList.Add($"--profile={_settings.Profile}");
-        if (!_settings.VrEnabled)
-            psi.ArgumentList.Add("--no-vr");
-        foreach (var arg in _settings.ExtraArgs.Split(' ', StringSplitOptions.RemoveEmptyEntries))
+        foreach (var arg in _settings.LaunchOptions.BuildArguments())
             psi.ArgumentList.Add(arg);
+
         Process.Start(psi);
     }
 }

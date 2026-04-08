@@ -2,28 +2,28 @@ using System.IO;
 using System.Reflection;
 using System.Text.Json;
 
-namespace DekapuSkillLauncher;
+using DekapuSkillLauncher.Services;
+
+namespace DekapuSkillLauncher.Models;
 
 public class AppSettings
 {
+    public const int CurrentVersion = 2;
+    public int Version { get; set; } = CurrentVersion;
     public int Profile { get; set; } = 0;
-    public string ExtraArgs { get; set; } = "";
     public int OscPort { get; set; } = 9000;
     public string OscAddress { get; set; } = "/input/UseLeft";
     public string ApiBaseUrl { get; set; } = "https://dekapu.njm2360.com";
-    public bool VrEnabled { get; set; } = false;
     public string LauncherPath { get; set; } = @"C:\Program Files (x86)\Steam\steamapps\common\VRChat\launch.exe";
     public bool CheckVrcProcess { get; set; } = true;
     public string Theme { get; set; } = "System";
     public string SelectedGroupId { get; set; } = GroupDefinitions.Groups[0].Id;
     public string Language { get; set; } =
-        System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName switch
-        {
-            "ja" => "ja",
-            "zh" => "zh",
-            "ko" => "ko",
-            _ => "en"
-        };
+        LocaleManager.SupportedLanguages
+            .FirstOrDefault(l => l.Code == System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+            ?.Code ?? "en";
+
+    public LaunchOptions LaunchOptions { get; set; } = new();
 
     private static readonly JsonSerializerOptions SerializerOptions = new() { WriteIndented = true };
 
@@ -38,7 +38,15 @@ public class AppSettings
         {
             if (File.Exists(SettingsPath))
             {
-                var s = JsonSerializer.Deserialize<AppSettings>(File.ReadAllText(SettingsPath)) ?? new();
+                var json = File.ReadAllText(SettingsPath);
+                AppSettings s;
+
+                using var doc = JsonDocument.Parse(json);
+                var root = doc.RootElement;
+                s = JsonSerializer.Deserialize<AppSettings>(json) ?? new();
+                if (!root.TryGetProperty(nameof(Version), out _))
+                    MigrateFromV1(s, json);
+
                 if (GroupDefinitions.Groups.All(g => g.Id != s.SelectedGroupId))
                     s.SelectedGroupId = GroupDefinitions.Groups[0].Id;
                 return s;
@@ -46,6 +54,11 @@ public class AppSettings
         }
         catch { }
         return new();
+    }
+
+    private static void MigrateFromV1(AppSettings s, string json)
+    {
+        s.LaunchOptions = JsonSerializer.Deserialize<LaunchOptions>(json) ?? new();
     }
 
     public void Save()

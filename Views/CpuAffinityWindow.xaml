@@ -1,0 +1,116 @@
+<Window x:Class="DekapuSkillLauncher.Views.CpuAffinityWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{DynamicResource S.WndCpuAffinity}"
+        Width="250" Height="400"
+        ResizeMode="NoResize"
+        WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        FontFamily="Yu Gothic UI"
+        FontSize="13"
+        Background="{DynamicResource WindowBg}"
+        Foreground="{DynamicResource WindowFg}">
+    <Window.Resources>
+        <Style x:Key="CoreToggleStyle" TargetType="ToggleButton">
+            <Setter Property="Height">
+                <Setter.Value>
+                    <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="{DynamicResource ToggleFg}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="Bd"
+                                Background="{DynamicResource ToggleBg}"
+                                BorderBrush="{DynamicResource ToggleBorder}"
+                                BorderThickness="1" CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              TextElement.Foreground="{TemplateBinding Foreground}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource ToggleCheckedBg}"/>
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource ToggleCheckedBorder}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource ToggleCheckedFg}"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                    <Condition Property="IsChecked" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource ToggleHoverBg}"/>
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource ToggleHoverBorder}"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                    <Condition Property="IsChecked" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource ToggleCheckedHoverBg}"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- コアタイル群 -->
+        <GroupBox Grid.Row="0" Header="{DynamicResource S.GrpCores}" Margin="0,0,0,6">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <UniformGrid x:Name="_corePanel" Columns="4" Margin="4" VerticalAlignment="Top"/>
+            </ScrollViewer>
+        </GroupBox>
+
+        <!-- 全選択 / 全解除 -->
+        <Grid Grid.Row="1" Margin="0,0,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="6"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="{DynamicResource S.BtnSelectAll}" Height="24" Click="SelectAll_Click"/>
+            <Button Grid.Column="2" Content="{DynamicResource S.BtnClearAll}"  Height="24" Click="ClearAll_Click"/>
+        </Grid>
+
+        <!-- 手動 16進数入力 -->
+        <Grid Grid.Row="2" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="{DynamicResource S.LblAffinityHex}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+            <Label Grid.Column="1" Content="0x" VerticalAlignment="Center" Margin="0,0,2,0" FontFamily="Consolas"/>
+            <TextBox x:Name="_hexBox" Grid.Column="2" VerticalContentAlignment="Center"
+                     FontFamily="Consolas" CharacterCasing="Upper"
+                     TextChanged="HexBox_TextChanged"
+                     PreviewTextInput="HexBox_PreviewTextInput"/>
+        </Grid>
+
+        <!-- OK / キャンセル -->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="6"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="{DynamicResource S.BtnOk}"     Height="26" Click="OkBtn_Click"/>
+            <Button Grid.Column="2" Content="{DynamicResource S.BtnCancel}" Height="26" Click="CancelBtn_Click"/>
+        </Grid>
+    </Grid>
+</Window>

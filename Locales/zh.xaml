@@ -19,6 +19,7 @@
     <sys:String x:Key="S.WndSettings">设置</sys:String>
     <sys:String x:Key="S.LblProfile">配置文件:</sys:String>
     <sys:String x:Key="S.LblExtraArgs">启动选项:</sys:String>
+    <sys:String x:Key="S.BtnLaunchOptions">启动选项...</sys:String>
     <sys:String x:Key="S.LblOscPort">OSC 端口:</sys:String>
     <sys:String x:Key="S.LblOscAddress">OSC 地址:</sys:String>
     <sys:String x:Key="S.LblApiUrl">API URL:</sys:String>
@@ -37,6 +38,65 @@
     <sys:String x:Key="S.DlgBrowseFilter">可执行文件 (*.exe)|*.exe</sys:String>
     <sys:String x:Key="S.BtnOk">确定</sys:String>
     <sys:String x:Key="S.BtnCancel">取消</sys:String>
+
+    <!-- CpuAffinityWindow -->
+    <sys:String x:Key="S.WndCpuAffinity">CPU 亲和性设置</sys:String>
+    <sys:String x:Key="S.GrpCores">核心选择</sys:String>
+    <sys:String x:Key="S.BtnSelectAll">全选</sys:String>
+    <sys:String x:Key="S.BtnClearAll">全清</sys:String>
+    <sys:String x:Key="S.LblAffinityHex">十六进制掩码:</sys:String>
+    <sys:String x:Key="S.TipAffinityBtn">打开核心选择窗口...</sys:String>
+
+    <!-- LaunchOptionsWindow -->
+    <sys:String x:Key="S.WndLaunchOptions">启动选项</sys:String>
+    <sys:String x:Key="S.GrpBasic">基本</sys:String>
+    <sys:String x:Key="S.LblFps">FPS 限制:</sys:String>
+    <sys:String x:Key="S.TipFps">0 或留空表示不限制</sys:String>
+    <sys:String x:Key="S.LblMidi">MIDI 设备:</sys:String>
+    <sys:String x:Key="S.GrpLaunchOsc">OSC 设置</sys:String>
+    <sys:String x:Key="S.ChkOsc">更改设置</sys:String>
+    <sys:String x:Key="S.LblOscInPort">接收端口:</sys:String>
+    <sys:String x:Key="S.LblOscOutIp">发送 IP:</sys:String>
+    <sys:String x:Key="S.LblOscOutPort">发送端口:</sys:String>
+    <sys:String x:Key="S.GrpPerformance">性能</sys:String>
+    <sys:String x:Key="S.LblAffinity">CPU 亲和性:</sys:String>
+    <sys:String x:Key="S.LblProcessPriority">进程优先级:</sys:String>
+    <sys:String x:Key="S.LblMainThreadPriority">主线程优先级:</sys:String>
+    <sys:String x:Key="S.PrioIdle">空闲</sys:String>
+    <sys:String x:Key="S.PrioLowest">最低</sys:String>
+    <sys:String x:Key="S.PrioBelowNormal">低于正常</sys:String>
+    <sys:String x:Key="S.PrioNormal">正常</sys:String>
+    <sys:String x:Key="S.PrioAboveNormal">高于正常</sys:String>
+    <sys:String x:Key="S.PrioHigh">高</sys:String>
+    <sys:String x:Key="S.PrioHighest">最高</sys:String>
+    <sys:String x:Key="S.GrpDisplay">画面</sys:String>
+    <sys:String x:Key="S.LblScreenWidth">画面宽度:</sys:String>
+    <sys:String x:Key="S.LblScreenHeight">画面高度:</sys:String>
+    <sys:String x:Key="S.LblScreenFullscreen">显示模式:</sys:String>
+    <sys:String x:Key="S.FullscreenWindowed">窗口</sys:String>
+    <sys:String x:Key="S.FullscreenFullscreen">全屏</sys:String>
+    <sys:String x:Key="S.LblMonitor">显示器编号:</sys:String>
+    <sys:String x:Key="S.TipMonitor">从 1 开始的显示器编号</sys:String>
+    <sys:String x:Key="S.LblHwVideoDecoding">硬件解码:</sys:String>
+    <sys:String x:Key="S.LblAmdStutter">AMD 优化:</sys:String>
+    <sys:String x:Key="S.ChkDisableAmdStutter">禁用 (--disable-amd-stutter-workaround)</sys:String>
+    <sys:String x:Key="S.GrpDebug">调试</sys:String>
+    <sys:String x:Key="S.ChkWatchWorlds">监视世界 (--watch-worlds)</sys:String>
+    <sys:String x:Key="S.ChkWatchAvatars">监视头像 (--watch-avatars)</sys:String>
+    <sys:String x:Key="S.ChkDebugGui">调试 GUI (--enable-debug-gui)</sys:String>
+    <sys:String x:Key="S.ChkSdkLogLevels">SDK 日志 (--enable-sdk-log-levels)</sys:String>
+    <sys:String x:Key="S.ChkUdonDebugLogging">Udon 调试 (--enable-udon-debug-logging)</sys:String>
+    <sys:String x:Key="S.ChkSkipRegistryInstall">跳过注册表更新 (--skip-registry-install)</sys:String>
+    <sys:String x:Key="S.ChkEnforceWorldServerChecks">启用服务器检查 (--enforce-world-server-checks)</sys:String>
+    <sys:String x:Key="S.LblIgnoreTrackers">排除追踪器:</sys:String>
+    <sys:String x:Key="S.TipIgnoreTrackers">以逗号分隔的序列号</sys:String>
+    <sys:String x:Key="S.GrpExtraArgs">附加参数</sys:String>
+    <sys:String x:Key="S.ErrFpsMsg">FPS 请输入 0 以上的整数</sys:String>
+    <sys:String x:Key="S.ErrOscInPortMsg">接收端口请输入 1 到 65535 的整数</sys:String>
+    <sys:String x:Key="S.ErrOscOutPortMsg">发送端口请输入 1 到 65535 的整数</sys:String>
+    <sys:String x:Key="S.ErrScreenWidthMsg">画面宽度请输入正整数</sys:String>
+    <sys:String x:Key="S.ErrScreenHeightMsg">画面高度请输入正整数</sys:String>
+    <sys:String x:Key="S.ErrMonitorMsg">显示器编号请输入 1 以上的整数</sys:String>
 
     <!-- Errors / Dialogs (code-behind) -->
     <sys:String x:Key="S.ErrInput">输入错误</sys:String>

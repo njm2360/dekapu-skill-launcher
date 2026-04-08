@@ -19,6 +19,7 @@
     <sys:String x:Key="S.WndSettings">설정</sys:String>
     <sys:String x:Key="S.LblProfile">프로필:</sys:String>
     <sys:String x:Key="S.LblExtraArgs">실행 옵션:</sys:String>
+    <sys:String x:Key="S.BtnLaunchOptions">실행 옵션...</sys:String>
     <sys:String x:Key="S.LblOscPort">OSC 포트:</sys:String>
     <sys:String x:Key="S.LblOscAddress">OSC 주소:</sys:String>
     <sys:String x:Key="S.LblApiUrl">API URL:</sys:String>
@@ -37,6 +38,65 @@
     <sys:String x:Key="S.DlgBrowseFilter">실행 파일 (*.exe)|*.exe</sys:String>
     <sys:String x:Key="S.BtnOk">확인</sys:String>
     <sys:String x:Key="S.BtnCancel">취소</sys:String>
+
+    <!-- CpuAffinityWindow -->
+    <sys:String x:Key="S.WndCpuAffinity">CPU 어피니티 설정</sys:String>
+    <sys:String x:Key="S.GrpCores">코어 선택</sys:String>
+    <sys:String x:Key="S.BtnSelectAll">전체 선택</sys:String>
+    <sys:String x:Key="S.BtnClearAll">전체 해제</sys:String>
+    <sys:String x:Key="S.LblAffinityHex">16진수 마스크:</sys:String>
+    <sys:String x:Key="S.TipAffinityBtn">코어 선택 창 열기...</sys:String>
+
+    <!-- LaunchOptionsWindow -->
+    <sys:String x:Key="S.WndLaunchOptions">실행 옵션</sys:String>
+    <sys:String x:Key="S.GrpBasic">기본</sys:String>
+    <sys:String x:Key="S.LblFps">FPS 제한:</sys:String>
+    <sys:String x:Key="S.TipFps">0 또는 공백으로 제한 없음</sys:String>
+    <sys:String x:Key="S.LblMidi">MIDI 장치:</sys:String>
+    <sys:String x:Key="S.GrpLaunchOsc">OSC 설정</sys:String>
+    <sys:String x:Key="S.ChkOsc">설정 변경</sys:String>
+    <sys:String x:Key="S.LblOscInPort">수신 포트:</sys:String>
+    <sys:String x:Key="S.LblOscOutIp">발신 IP:</sys:String>
+    <sys:String x:Key="S.LblOscOutPort">발신 포트:</sys:String>
+    <sys:String x:Key="S.GrpPerformance">성능</sys:String>
+    <sys:String x:Key="S.LblAffinity">CPU 어피니티:</sys:String>
+    <sys:String x:Key="S.LblProcessPriority">프로세스 우선순위:</sys:String>
+    <sys:String x:Key="S.LblMainThreadPriority">메인 스레드 우선순위:</sys:String>
+    <sys:String x:Key="S.PrioIdle">유휴</sys:String>
+    <sys:String x:Key="S.PrioLowest">최저</sys:String>
+    <sys:String x:Key="S.PrioBelowNormal">보통 이하</sys:String>
+    <sys:String x:Key="S.PrioNormal">보통</sys:String>
+    <sys:String x:Key="S.PrioAboveNormal">보통 이상</sys:String>
+    <sys:String x:Key="S.PrioHigh">높음</sys:String>
+    <sys:String x:Key="S.PrioHighest">최고</sys:String>
+    <sys:String x:Key="S.GrpDisplay">화면</sys:String>
+    <sys:String x:Key="S.LblScreenWidth">화면 너비:</sys:String>
+    <sys:String x:Key="S.LblScreenHeight">화면 높이:</sys:String>
+    <sys:String x:Key="S.LblScreenFullscreen">화면 모드:</sys:String>
+    <sys:String x:Key="S.FullscreenWindowed">창 모드</sys:String>
+    <sys:String x:Key="S.FullscreenFullscreen">전체 화면</sys:String>
+    <sys:String x:Key="S.LblMonitor">모니터 번호:</sys:String>
+    <sys:String x:Key="S.TipMonitor">1부터 시작하는 모니터 번호</sys:String>
+    <sys:String x:Key="S.LblHwVideoDecoding">하드웨어 디코딩:</sys:String>
+    <sys:String x:Key="S.LblAmdStutter">AMD 최적화:</sys:String>
+    <sys:String x:Key="S.ChkDisableAmdStutter">비활성화 (--disable-amd-stutter-workaround)</sys:String>
+    <sys:String x:Key="S.GrpDebug">디버그</sys:String>
+    <sys:String x:Key="S.ChkWatchWorlds">월드 감시 (--watch-worlds)</sys:String>
+    <sys:String x:Key="S.ChkWatchAvatars">아바타 감시 (--watch-avatars)</sys:String>
+    <sys:String x:Key="S.ChkDebugGui">디버그 GUI (--enable-debug-gui)</sys:String>
+    <sys:String x:Key="S.ChkSdkLogLevels">SDK 로그 (--enable-sdk-log-levels)</sys:String>
+    <sys:String x:Key="S.ChkUdonDebugLogging">Udon 디버그 (--enable-udon-debug-logging)</sys:String>
+    <sys:String x:Key="S.ChkSkipRegistryInstall">레지스트리 설치 건너뛰기 (--skip-registry-install)</sys:String>
+    <sys:String x:Key="S.ChkEnforceWorldServerChecks">서버 검사 활성화 (--enforce-world-server-checks)</sys:String>
+    <sys:String x:Key="S.LblIgnoreTrackers">트래커 제외:</sys:String>
+    <sys:String x:Key="S.TipIgnoreTrackers">쉼표로 구분된 시리얼 번호</sys:String>
+    <sys:String x:Key="S.GrpExtraArgs">추가 인수</sys:String>
+    <sys:String x:Key="S.ErrFpsMsg">FPS는 0 이상의 정수로 입력해 주세요</sys:String>
+    <sys:String x:Key="S.ErrOscInPortMsg">수신 포트는 1에서 65535 사이의 정수로 입력해 주세요</sys:String>
+    <sys:String x:Key="S.ErrOscOutPortMsg">발신 포트는 1에서 65535 사이의 정수로 입력해 주세요</sys:String>
+    <sys:String x:Key="S.ErrScreenWidthMsg">화면 너비는 양의 정수로 입력해 주세요</sys:String>
+    <sys:String x:Key="S.ErrScreenHeightMsg">화면 높이는 양의 정수로 입력해 주세요</sys:String>
+    <sys:String x:Key="S.ErrMonitorMsg">모니터 번호는 1 이상의 정수로 입력해 주세요</sys:String>
 
     <!-- Errors / Dialogs (code-behind) -->
     <sys:String x:Key="S.ErrInput">입력 오류</sys:String>

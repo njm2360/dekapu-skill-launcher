@@ -14,10 +14,13 @@ public class InstanceService(AppSettings settings)
         if (!refresh && _caches.TryGetValue(groupId, out var cached))
             return cached;
 
-        var json = await _client.GetStringAsync($"{settings.ApiBaseUrl}/instances/{groupId}");
-        var arr = JsonSerializer.Deserialize<JsonElement[]>(json)!;
-        var instances = arr.Select(InstanceInfo.FromJson).ToList();
-        var cache = new InstanceCache(instances, DateTimeOffset.UtcNow);
+        var cache = await HttpRetryHelper.ExecuteAsync(async () =>
+        {
+            var json = await _client.GetStringAsync($"{settings.ApiBaseUrl}/instances/{groupId}");
+            var arr = JsonSerializer.Deserialize<JsonElement[]>(json)!;
+            var instances = arr.Select(InstanceInfo.FromJson).ToList();
+            return new InstanceCache(instances, DateTimeOffset.UtcNow);
+        });
         _caches[groupId] = cache;
         return cache;
     }

@@ -2,7 +2,7 @@
 
 でかプのグループインスタンス一覧を取得し、ワンクリックで起動できるWindowsデスクトップアプリです。
 
-![.NET 8](https://img.shields.io/badge/.NET-8.0-blue) ![Platform](https://img.shields.io/badge/platform-Windows-lightgrey) ![License](https://img.shields.io/badge/license-BSD--2--Clause-blue)
+![.NET 10](https://img.shields.io/badge/.NET-10.0-blue) ![Platform](https://img.shields.io/badge/platform-Windows-lightgrey) ![License](https://img.shields.io/badge/license-BSD--2--Clause-blue)
 
 ---
 
@@ -12,7 +12,7 @@
 
 1. [Releases](https://github.com/njm2360/dekapu-skill-launcher/releases) から最新の `dekapu-skill-launcher.exe` をダウンロード
 2. 任意のフォルダに配置して実行
-  ※.NET 8.0 Desktop Runtime が必要です。未インストールの場合、初回起動時にダウンロードページが開きます。
+  ※.NET 10.0 Desktop Runtime が必要です。未インストールの場合、初回起動時にダウンロードページが開きます。
 
 ### ソースからビルド
 

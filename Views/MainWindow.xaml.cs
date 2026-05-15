@@ -124,6 +124,7 @@ public partial class MainWindow : Window
         _settings.LauncherPath = dlg.LauncherPath;
         _settings.Theme = dlg.Theme;
         _settings.Language = dlg.AppLanguage;
+        _settings.HardwareAcceleration = dlg.HardwareAcceleration;
         _settings.LaunchOptions = dlg.LaunchOptions;
 
         try { _settings.Save(); }

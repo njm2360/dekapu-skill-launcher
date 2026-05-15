@@ -14,10 +14,12 @@ public partial class SettingsWindow : Window
     public string LauncherPath { get; private set; } = "";
     public string Theme { get; private set; } = "System";
     public string AppLanguage { get; private set; } = LocaleManager.DefaultLanguage;
+    public bool HardwareAcceleration { get; private set; } = true;
 
     public LaunchOptions LaunchOptions { get; private set; } = new();
 
     private LaunchOptions _launchDraft;
+    private readonly bool _initialHardwareAcceleration;
 
     public SettingsWindow(AppSettings settings)
     {
@@ -30,6 +32,8 @@ public partial class SettingsWindow : Window
         _oscAddressBox.Text = settings.OscAddress;
         _vrcCheckBox.IsChecked = settings.CheckVrcProcess;
         _launcherPathBox.Text = settings.LauncherPath;
+        _hwAccelBox.IsChecked = settings.HardwareAcceleration;
+        _initialHardwareAcceleration = settings.HardwareAcceleration;
 
         switch (settings.Theme)
         {
@@ -75,8 +79,17 @@ public partial class SettingsWindow : Window
               : "System";
         AppLanguage = (_langCombo.SelectedItem as LanguageItem)?.Code
                       ?? LocaleManager.DefaultLanguage;
+        HardwareAcceleration = _hwAccelBox.IsChecked == true;
 
         LaunchOptions = _launchDraft;
+
+        if (HardwareAcceleration != _initialHardwareAcceleration)
+        {
+            MessageBox.Show(this,
+                LocaleManager.Get("S.MsgRestartRequired"),
+                LocaleManager.Get("S.DlgInfoTitle"),
+                MessageBoxButton.OK, MessageBoxImage.Information);
+        }
 
         DialogResult = true;
     }

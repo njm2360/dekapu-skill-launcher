@@ -33,6 +33,8 @@
     <sys:String x:Key="S.ThemeDark">Dark</sys:String>
     <sys:String x:Key="S.ThemeSystem">System</sys:String>
     <sys:String x:Key="S.LblLang">Language:</sys:String>
+    <sys:String x:Key="S.LblHwAccel">Rendering:</sys:String>
+    <sys:String x:Key="S.ChkHwAccel">Use hardware acceleration</sys:String>
     <sys:String x:Key="S.BtnBrowse">Browse...</sys:String>
     <sys:String x:Key="S.DlgBrowseTitle">Select VRChat Launcher</sys:String>
     <sys:String x:Key="S.DlgBrowseFilter">Executable (*.exe)|*.exe</sys:String>
@@ -106,6 +108,8 @@
     <sys:String x:Key="S.ErrOscTitle">OSC Error</sys:String>
     <sys:String x:Key="S.ErrTitle">Error</sys:String>
     <sys:String x:Key="S.DlgConfirmTitle">Confirm</sys:String>
+    <sys:String x:Key="S.DlgInfoTitle">Information</sys:String>
+    <sys:String x:Key="S.MsgRestartRequired">Hardware acceleration changes will not take effect until the application is restarted.</sys:String>
     <sys:String x:Key="S.DlgLaunchMsg" xml:space="preserve">Launch this instance?&#x0a;&#x0a;Name: {0}</sys:String>
     <sys:String x:Key="S.ErrNoLauncher" xml:space="preserve">VRChat launcher not found:&#x0a;{0}</sys:String>
 <sys:String x:Key="S.VrcRunningMsg">VRChat is already running. Please close it before launching.</sys:String>

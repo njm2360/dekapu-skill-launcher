@@ -33,6 +33,8 @@
     <sys:String x:Key="S.ThemeDark">다크</sys:String>
     <sys:String x:Key="S.ThemeSystem">시스템</sys:String>
     <sys:String x:Key="S.LblLang">언어:</sys:String>
+    <sys:String x:Key="S.LblHwAccel">렌더링:</sys:String>
+    <sys:String x:Key="S.ChkHwAccel">하드웨어 가속 사용</sys:String>
     <sys:String x:Key="S.BtnBrowse">찾아보기...</sys:String>
     <sys:String x:Key="S.DlgBrowseTitle">VRChat 런처 선택</sys:String>
     <sys:String x:Key="S.DlgBrowseFilter">실행 파일 (*.exe)|*.exe</sys:String>
@@ -106,6 +108,8 @@
     <sys:String x:Key="S.ErrOscTitle">OSC 오류</sys:String>
     <sys:String x:Key="S.ErrTitle">오류</sys:String>
     <sys:String x:Key="S.DlgConfirmTitle">확인</sys:String>
+    <sys:String x:Key="S.DlgInfoTitle">정보</sys:String>
+    <sys:String x:Key="S.MsgRestartRequired">하드웨어 가속 변경 사항은 애플리케이션을 다시 시작해야 적용됩니다.</sys:String>
     <sys:String x:Key="S.DlgLaunchMsg" xml:space="preserve">다음 인스턴스로 실행하시겠습니까?&#x0a;&#x0a;이름: {0}</sys:String>
     <sys:String x:Key="S.ErrNoLauncher" xml:space="preserve">런처를 찾을 수 없습니다:&#x0a;{0}</sys:String>
 <sys:String x:Key="S.VrcRunningMsg">VRChat이 이미 실행 중입니다. 먼저 VRChat을 종료해 주세요.</sys:String>

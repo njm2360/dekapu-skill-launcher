@@ -33,6 +33,8 @@
     <sys:String x:Key="S.ThemeDark">深色</sys:String>
     <sys:String x:Key="S.ThemeSystem">系统</sys:String>
     <sys:String x:Key="S.LblLang">语言:</sys:String>
+    <sys:String x:Key="S.LblHwAccel">渲染:</sys:String>
+    <sys:String x:Key="S.ChkHwAccel">使用硬件加速</sys:String>
     <sys:String x:Key="S.BtnBrowse">浏览...</sys:String>
     <sys:String x:Key="S.DlgBrowseTitle">选择 VRChat 启动器</sys:String>
     <sys:String x:Key="S.DlgBrowseFilter">可执行文件 (*.exe)|*.exe</sys:String>
@@ -106,6 +108,8 @@
     <sys:String x:Key="S.ErrOscTitle">OSC 错误</sys:String>
     <sys:String x:Key="S.ErrTitle">错误</sys:String>
     <sys:String x:Key="S.DlgConfirmTitle">确认</sys:String>
+    <sys:String x:Key="S.DlgInfoTitle">信息</sys:String>
+    <sys:String x:Key="S.MsgRestartRequired">硬件加速的更改需要重新启动应用程序后才会生效。</sys:String>
     <sys:String x:Key="S.DlgLaunchMsg" xml:space="preserve">是否在以下实例中启动？&#x0a;&#x0a;名称: {0}</sys:String>
     <sys:String x:Key="S.ErrNoLauncher" xml:space="preserve">找不到启动器:&#x0a;{0}</sys:String>
 <sys:String x:Key="S.VrcRunningMsg">VRChat 正在运行，无法启动。请先关闭 VRChat。</sys:String>

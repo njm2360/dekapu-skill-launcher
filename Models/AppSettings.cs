@@ -8,7 +8,7 @@ namespace DekapuSkillLauncher.Models;
 
 public class AppSettings
 {
-    public const int CurrentVersion = 2;
+    public const int CurrentVersion = 3;
     public int Version { get; set; } = CurrentVersion;
     public int Profile { get; set; } = 0;
     public int OscPort { get; set; } = 9000;
@@ -16,6 +16,7 @@ public class AppSettings
     public string ApiBaseUrl { get; set; } = "https://dekapu.njm2360.com";
     public string LauncherPath { get; set; } = @"C:\Program Files (x86)\Steam\steamapps\common\VRChat\launch.exe";
     public bool CheckVrcProcess { get; set; } = true;
+    public bool HardwareAcceleration { get; set; } = true;
     public string Theme { get; set; } = "System";
     public string SelectedGroupId { get; set; } = GroupDefinitions.Groups[0].Id;
     public string Language { get; set; } =

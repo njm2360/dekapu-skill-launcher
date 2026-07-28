@@ -112,6 +112,8 @@
     <sys:String x:Key="S.MsgRestartRequired">Hardware acceleration changes will not take effect until the application is restarted.</sys:String>
     <sys:String x:Key="S.DlgLaunchMsg" xml:space="preserve">Launch this instance?&#x0a;&#x0a;Name: {0}</sys:String>
     <sys:String x:Key="S.ErrNoLauncher" xml:space="preserve">VRChat launcher not found:&#x0a;{0}</sys:String>
+    <sys:String x:Key="S.ErrLaunchFailedMsg" xml:space="preserve">Failed to start the launcher:&#x0a;{0}</sys:String>
+    <sys:String x:Key="S.ErrUnexpectedMsg" xml:space="preserve">An unexpected error occurred:&#x0a;{0}</sys:String>
     <sys:String x:Key="S.VrcRunningMsg">VRChat is already running. Please close it before launching.</sys:String>
     <sys:String x:Key="S.ErrNoCacheMsg">Instance list has not been loaded</sys:String>
     <sys:String x:Key="S.ErrInstanceNotFoundMsg">Instance not found</sys:String>

@@ -112,6 +112,8 @@
     <sys:String x:Key="S.MsgRestartRequired">硬件加速的更改需要重新启动应用程序后才会生效。</sys:String>
     <sys:String x:Key="S.DlgLaunchMsg" xml:space="preserve">是否在以下实例中启动？&#x0a;&#x0a;名称: {0}</sys:String>
     <sys:String x:Key="S.ErrNoLauncher" xml:space="preserve">找不到启动器:&#x0a;{0}</sys:String>
-<sys:String x:Key="S.VrcRunningMsg">VRChat 正在运行，无法启动。请先关闭 VRChat。</sys:String>
+    <sys:String x:Key="S.VrcRunningMsg">VRChat 正在运行，无法启动。请先关闭 VRChat。</sys:String>
+    <sys:String x:Key="S.ErrNoCacheMsg">实例列表尚未加载</sys:String>
+    <sys:String x:Key="S.ErrInstanceNotFoundMsg">找不到实例</sys:String>
 
 </ResourceDictionary>

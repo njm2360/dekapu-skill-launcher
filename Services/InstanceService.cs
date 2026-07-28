@@ -28,9 +28,9 @@ public class InstanceService(AppSettings settings)
     public InstanceInfo GetInstanceById(string groupId, string instId)
     {
         if (!_caches.TryGetValue(groupId, out var cache))
-            throw new InvalidOperationException("キャッシュが存在しません");
+            throw new InvalidOperationException(LocaleManager.Get("S.ErrNoCacheMsg"));
 
         return cache.Instances.FirstOrDefault(i => i.Id == instId)
-            ?? throw new InvalidOperationException("インスタンスが見つかりません");
+            ?? throw new InvalidOperationException(LocaleManager.Get("S.ErrInstanceNotFoundMsg"));
     }
 }

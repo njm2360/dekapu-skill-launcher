@@ -114,6 +114,7 @@
     <sys:String x:Key="S.ErrNoLauncher" xml:space="preserve">ランチャーが見つかりません:&#x0a;{0}</sys:String>
     <sys:String x:Key="S.ErrLaunchFailedMsg" xml:space="preserve">ランチャーの起動に失敗しました:&#x0a;{0}</sys:String>
     <sys:String x:Key="S.ErrUnexpectedMsg" xml:space="preserve">予期しないエラーが発生しました:&#x0a;{0}</sys:String>
+    <sys:String x:Key="S.ErrAlreadyRunningMsg">アプリケーションは既に起動しています</sys:String>
     <sys:String x:Key="S.VrcRunningMsg">VRChatが起動中のため起動できません。先にVRChatを終了してください。</sys:String>
     <sys:String x:Key="S.ErrNoCacheMsg">インスタンス一覧が読み込まれていません</sys:String>
     <sys:String x:Key="S.ErrInstanceNotFoundMsg">インスタンスが見つかりません</sys:String>

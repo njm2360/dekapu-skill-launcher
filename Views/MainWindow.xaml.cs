@@ -267,6 +267,14 @@ public partial class MainWindow : Window
         foreach (var arg in _settings.LaunchOptions.BuildArguments())
             psi.ArgumentList.Add(arg);
 
-        Process.Start(psi);
+        try
+        {
+            Process.Start(psi);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(string.Format(LocaleManager.Get("S.ErrLaunchFailedMsg"), ex.Message),
+                LocaleManager.Get("S.ErrTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 }

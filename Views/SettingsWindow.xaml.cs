@@ -7,17 +7,7 @@ namespace DekapuSkillLauncher.Views;
 
 public partial class SettingsWindow : Window
 {
-    public int Profile { get; private set; }
-    public int OscPort { get; private set; }
-    public string OscAddress { get; private set; } = "";
-    public bool CheckVrcProcess { get; private set; }
-    public string LauncherPath { get; private set; } = "";
-    public string Theme { get; private set; } = "System";
-    public string AppLanguage { get; private set; } = LocaleManager.DefaultLanguage;
-    public bool HardwareAcceleration { get; private set; } = true;
-
-    public LaunchOptions LaunchOptions { get; private set; } = new();
-
+    private readonly AppSettings _settings;
     private LaunchOptions _launchDraft;
     private readonly bool _initialHardwareAcceleration;
 
@@ -25,6 +15,7 @@ public partial class SettingsWindow : Window
     {
         InitializeComponent();
 
+        _settings = settings;
         _launchDraft = settings.LaunchOptions.Clone();
 
         _profileBox.Text = settings.Profile.ToString();
@@ -69,21 +60,20 @@ public partial class SettingsWindow : Window
             return;
         }
 
-        Profile = profile;
-        OscPort = oscPort;
-        OscAddress = oscAddress;
-        CheckVrcProcess = _vrcCheckBox.IsChecked == true;
-        LauncherPath = _launcherPathBox.Text.Trim();
-        Theme = _themeDarkRadio.IsChecked == true ? "Dark"
-              : _themeLightRadio.IsChecked == true ? "Light"
-              : "System";
-        AppLanguage = (_langCombo.SelectedItem as LanguageItem)?.Code
-                      ?? LocaleManager.DefaultLanguage;
-        HardwareAcceleration = _hwAccelBox.IsChecked == true;
+        _settings.Profile = profile;
+        _settings.OscPort = oscPort;
+        _settings.OscAddress = oscAddress;
+        _settings.CheckVrcProcess = _vrcCheckBox.IsChecked == true;
+        _settings.LauncherPath = _launcherPathBox.Text.Trim();
+        _settings.Theme = _themeDarkRadio.IsChecked == true ? "Dark"
+                        : _themeLightRadio.IsChecked == true ? "Light"
+                        : "System";
+        _settings.Language = (_langCombo.SelectedItem as LanguageItem)?.Code
+                             ?? LocaleManager.DefaultLanguage;
+        _settings.HardwareAcceleration = _hwAccelBox.IsChecked == true;
+        _settings.LaunchOptions = _launchDraft;
 
-        LaunchOptions = _launchDraft;
-
-        if (HardwareAcceleration != _initialHardwareAcceleration)
+        if (_settings.HardwareAcceleration != _initialHardwareAcceleration)
         {
             MessageBox.Show(this,
                 LocaleManager.Get("S.MsgRestartRequired"),

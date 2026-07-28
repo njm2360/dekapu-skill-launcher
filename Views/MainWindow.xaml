@@ -30,7 +30,7 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button Content="{DynamicResource S.BtnRefresh}" Width="72" Height="26" Margin="0,0,4,0" Click="RefreshBtn_Click"/>
+            <Button x:Name="_refreshBtn" Content="{DynamicResource S.BtnRefresh}" Width="72" Height="26" Margin="0,0,4,0" Click="RefreshBtn_Click"/>
             <Button x:Name="_launchBtn" Content="{DynamicResource S.BtnLaunch}" Width="72" Height="26" Margin="0,0,4,0" IsEnabled="False" Click="LaunchBtn_Click"/>
             <Button Content="{DynamicResource S.BtnSettings}" Width="72" Height="26" Click="SettingsBtn_Click"/>
         </StackPanel>

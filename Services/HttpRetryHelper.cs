@@ -6,7 +6,7 @@ namespace DekapuSkillLauncher.Services;
 public static class HttpRetryHelper
 {
     public static async Task<T> ExecuteAsync<T>(
-        Func<Task<T>> action,
+        Func<CancellationToken, Task<T>> action,
         int maxAttempts = 5,
         CancellationToken cancellationToken = default)
     {
@@ -14,9 +14,9 @@ public static class HttpRetryHelper
         {
             try
             {
-                return await action();
+                return await action(cancellationToken);
             }
-            catch (Exception ex) when (attempt < maxAttempts - 1 && IsTransient(ex))
+            catch (Exception ex) when (attempt < maxAttempts - 1 && IsTransient(ex, cancellationToken))
             {
                 var delay = TimeSpan.FromSeconds(Math.Pow(2, attempt)); // 1s, 2s, 4s, 8s
                 await Task.Delay(delay, cancellationToken);
@@ -24,14 +24,15 @@ public static class HttpRetryHelper
         }
     }
 
-    private static bool IsTransient(Exception ex) => ex switch
+    private static bool IsTransient(Exception ex, CancellationToken cancellationToken) => ex switch
     {
+        // HttpClientはユーザーキャンセルでもTaskCanceledExceptionを投げるため、呼び出し元トークンで判定する
+        OperationCanceledException when cancellationToken.IsCancellationRequested => false,
         HttpRequestException { StatusCode: null } => true,                          // ネットワーク到達不可
         HttpRequestException { StatusCode: HttpStatusCode.TooManyRequests } => true, // 429
         HttpRequestException { StatusCode: >= HttpStatusCode.InternalServerError } => true, // 5xx
         HttpRequestException => false,                                               // その他4xx
         TaskCanceledException => true,                                               // タイムアウト
-        OperationCanceledException => false,                                         // ユーザーキャンセル
         _ => false,
     };
 }

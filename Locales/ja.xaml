@@ -35,6 +35,8 @@
     <sys:String x:Key="S.LblLang">言語:</sys:String>
     <sys:String x:Key="S.LblHwAccel">描画:</sys:String>
     <sys:String x:Key="S.ChkHwAccel">ハードウェアアクセラレータを使用する</sys:String>
+    <sys:String x:Key="S.LblAutoStart">自動起動:</sys:String>
+    <sys:String x:Key="S.ChkAutoStart">Windows起動時に自動起動する</sys:String>
     <sys:String x:Key="S.BtnBrowse">参照...</sys:String>
     <sys:String x:Key="S.DlgBrowseTitle">VRChatランチャーを選択</sys:String>
     <sys:String x:Key="S.DlgBrowseFilter">実行ファイル (*.exe)|*.exe</sys:String>

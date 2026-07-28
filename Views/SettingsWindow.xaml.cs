@@ -10,6 +10,7 @@ public partial class SettingsWindow : Window
     private readonly AppSettings _settings;
     private LaunchOptions _launchDraft;
     private readonly bool _initialHardwareAcceleration;
+    private readonly bool _initialAutoStart;
 
     public SettingsWindow(AppSettings settings)
     {
@@ -25,6 +26,8 @@ public partial class SettingsWindow : Window
         _launcherPathBox.Text = settings.LauncherPath;
         _hwAccelBox.IsChecked = settings.HardwareAcceleration;
         _initialHardwareAcceleration = settings.HardwareAcceleration;
+        _initialAutoStart = StartupManager.IsEnabled();
+        _autoStartBox.IsChecked = _initialAutoStart;
 
         switch (settings.Theme)
         {
@@ -72,6 +75,20 @@ public partial class SettingsWindow : Window
                              ?? LocaleManager.DefaultLanguage;
         _settings.HardwareAcceleration = _hwAccelBox.IsChecked == true;
         _settings.LaunchOptions = _launchDraft;
+
+        var autoStart = _autoStartBox.IsChecked == true;
+        if (autoStart != _initialAutoStart)
+        {
+            try
+            {
+                StartupManager.SetEnabled(autoStart);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, LocaleManager.Get("S.ErrTitle"),
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
 
         if (_settings.HardwareAcceleration != _initialHardwareAcceleration)
         {

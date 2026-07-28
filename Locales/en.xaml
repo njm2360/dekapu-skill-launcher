@@ -35,6 +35,8 @@
     <sys:String x:Key="S.LblLang">Language:</sys:String>
     <sys:String x:Key="S.LblHwAccel">Rendering:</sys:String>
     <sys:String x:Key="S.ChkHwAccel">Use hardware acceleration</sys:String>
+    <sys:String x:Key="S.LblAutoStart">Auto Start:</sys:String>
+    <sys:String x:Key="S.ChkAutoStart">Start automatically when Windows starts</sys:String>
     <sys:String x:Key="S.BtnBrowse">Browse...</sys:String>
     <sys:String x:Key="S.DlgBrowseTitle">Select VRChat Launcher</sys:String>
     <sys:String x:Key="S.DlgBrowseFilter">Executable (*.exe)|*.exe</sys:String>

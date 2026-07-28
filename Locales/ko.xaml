@@ -35,6 +35,8 @@
     <sys:String x:Key="S.LblLang">언어:</sys:String>
     <sys:String x:Key="S.LblHwAccel">렌더링:</sys:String>
     <sys:String x:Key="S.ChkHwAccel">하드웨어 가속 사용</sys:String>
+    <sys:String x:Key="S.LblAutoStart">자동 시작:</sys:String>
+    <sys:String x:Key="S.ChkAutoStart">Windows 시작 시 자동 실행</sys:String>
     <sys:String x:Key="S.BtnBrowse">찾아보기...</sys:String>
     <sys:String x:Key="S.DlgBrowseTitle">VRChat 런처 선택</sys:String>
     <sys:String x:Key="S.DlgBrowseFilter">실행 파일 (*.exe)|*.exe</sys:String>

@@ -35,6 +35,8 @@
     <sys:String x:Key="S.LblLang">语言:</sys:String>
     <sys:String x:Key="S.LblHwAccel">渲染:</sys:String>
     <sys:String x:Key="S.ChkHwAccel">使用硬件加速</sys:String>
+    <sys:String x:Key="S.LblAutoStart">自动启动:</sys:String>
+    <sys:String x:Key="S.ChkAutoStart">开机时自动启动</sys:String>
     <sys:String x:Key="S.BtnBrowse">浏览...</sys:String>
     <sys:String x:Key="S.DlgBrowseTitle">选择 VRChat 启动器</sys:String>
     <sys:String x:Key="S.DlgBrowseFilter">可执行文件 (*.exe)|*.exe</sys:String>

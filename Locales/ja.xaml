@@ -112,6 +112,8 @@
     <sys:String x:Key="S.MsgRestartRequired">ハードウェアアクセラレーションの変更は、アプリケーションを再起動するまで反映されません。</sys:String>
     <sys:String x:Key="S.DlgLaunchMsg" xml:space="preserve">以下のインスタンスで起動しますか？&#x0a;&#x0a;名前: {0}</sys:String>
     <sys:String x:Key="S.ErrNoLauncher" xml:space="preserve">ランチャーが見つかりません:&#x0a;{0}</sys:String>
-<sys:String x:Key="S.VrcRunningMsg">VRChatが起動中のため起動できません。先にVRChatを終了してください。</sys:String>
+    <sys:String x:Key="S.VrcRunningMsg">VRChatが起動中のため起動できません。先にVRChatを終了してください。</sys:String>
+    <sys:String x:Key="S.ErrNoCacheMsg">インスタンス一覧が読み込まれていません</sys:String>
+    <sys:String x:Key="S.ErrInstanceNotFoundMsg">インスタンスが見つかりません</sys:String>
 
 </ResourceDictionary>

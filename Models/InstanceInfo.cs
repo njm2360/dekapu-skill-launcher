@@ -16,7 +16,7 @@ public record InstanceInfo(
     {
         DateTimeOffset? closedAt = null;
         if (d.TryGetProperty("closedAt", out var ca) && ca.ValueKind == JsonValueKind.String)
-            closedAt = DateTimeOffset.Parse(ca.GetString()!);
+            closedAt = ca.GetDateTimeOffset();
 
         string? displayName = null;
         if (d.TryGetProperty("displayName", out var dn) && dn.ValueKind == JsonValueKind.String)

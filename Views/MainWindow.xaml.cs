@@ -14,9 +14,6 @@ public record InstanceRow(string Id, string DisplayNameOrName, int UserCount, bo
 
 public partial class MainWindow : Window
 {
-    private static readonly TimeZoneInfo TZ =
-        TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
-
     private static readonly Models.GroupItem[] Groups = GroupDefinitions.Groups;
 
     private readonly InstanceService _ctrl;
@@ -142,8 +139,8 @@ public partial class MainWindow : Window
     {
         if (_lastUpdatedAt is null)
             return;
-        var jst = TimeZoneInfo.ConvertTime(_lastUpdatedAt.Value, TZ);
-        _updatedLabel.Text = string.Format(LocaleManager.Get("S.UpdatedAt"), jst.ToString("yyyy-MM-dd HH:mm:ss"));
+        var local = _lastUpdatedAt.Value.ToLocalTime();
+        _updatedLabel.Text = string.Format(LocaleManager.Get("S.UpdatedAt"), local.ToString("yyyy-MM-dd HH:mm:ss"));
     }
 
     private async Task UpdateInstancesAsync(bool refresh = false)

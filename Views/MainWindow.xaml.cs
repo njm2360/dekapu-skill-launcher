@@ -118,16 +118,6 @@ public partial class MainWindow : Window
         if (dlg.ShowDialog() != true)
             return;
 
-        _settings.Profile = dlg.Profile;
-        _settings.OscPort = dlg.OscPort;
-        _settings.OscAddress = dlg.OscAddress;
-        _settings.CheckVrcProcess = dlg.CheckVrcProcess;
-        _settings.LauncherPath = dlg.LauncherPath;
-        _settings.Theme = dlg.Theme;
-        _settings.Language = dlg.AppLanguage;
-        _settings.HardwareAcceleration = dlg.HardwareAcceleration;
-        _settings.LaunchOptions = dlg.LaunchOptions;
-
         try { _settings.Save(); }
         catch (Exception ex)
         {

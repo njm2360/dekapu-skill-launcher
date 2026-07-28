@@ -11,6 +11,8 @@ public partial class App : Application
 {
     public static AppSettings Settings { get; private set; } = null!;
 
+    private Mutex? _instanceMutex;
+
     protected override void OnStartup(StartupEventArgs e)
     {
         DispatcherUnhandledException += (_, args) =>
@@ -31,6 +33,26 @@ public partial class App : Application
             RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
         LocaleManager.Apply(Settings.Language);
         ThemeManager.Apply(Settings.Theme);
+
+        _instanceMutex = new Mutex(true, "DekapuSkillLauncher", out var createdNew);
+        if (!createdNew)
+        {
+            _instanceMutex.Dispose();
+            _instanceMutex = null;
+            MessageBox.Show(LocaleManager.Get("S.ErrAlreadyRunningMsg"),
+                LocaleManager.Get("S.ErrTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+            Shutdown();
+        }
+    }
+
+    protected override void OnExit(ExitEventArgs e)
+    {
+        if (_instanceMutex is not null)
+        {
+            _instanceMutex.ReleaseMutex();
+            _instanceMutex.Dispose();
+        }
+        base.OnExit(e);
     }
 
     private static void ShowUnexpectedError(Exception ex)

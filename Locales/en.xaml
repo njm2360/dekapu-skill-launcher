@@ -114,6 +114,7 @@
     <sys:String x:Key="S.ErrNoLauncher" xml:space="preserve">VRChat launcher not found:&#x0a;{0}</sys:String>
     <sys:String x:Key="S.ErrLaunchFailedMsg" xml:space="preserve">Failed to start the launcher:&#x0a;{0}</sys:String>
     <sys:String x:Key="S.ErrUnexpectedMsg" xml:space="preserve">An unexpected error occurred:&#x0a;{0}</sys:String>
+    <sys:String x:Key="S.ErrAlreadyRunningMsg">The application is already running</sys:String>
     <sys:String x:Key="S.VrcRunningMsg">VRChat is already running. Please close it before launching.</sys:String>
     <sys:String x:Key="S.ErrNoCacheMsg">Instance list has not been loaded</sys:String>
     <sys:String x:Key="S.ErrInstanceNotFoundMsg">Instance not found</sys:String>

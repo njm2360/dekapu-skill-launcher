@@ -2,7 +2,18 @@
 
 でかプのグループインスタンス一覧を取得し、ワンクリックで起動できるWindowsデスクトップアプリです。
 
-![.NET 10](https://img.shields.io/badge/.NET-10.0-blue) ![Platform](https://img.shields.io/badge/platform-Windows-lightgrey) ![License](https://img.shields.io/badge/license-BSD--2--Clause-blue)
+[![CI](https://github.com/njm2360/dekapu-skill-launcher/actions/workflows/ci.yml/badge.svg)](https://github.com/njm2360/dekapu-skill-launcher/actions/workflows/ci.yml)
+![Release](https://img.shields.io/github/v/release/njm2360/dekapu-skill-launcher)
+![.NET 10](https://img.shields.io/badge/.NET-10.0-blue)
+![Platform](https://img.shields.io/badge/platform-Windows-lightgrey)
+[![License](https://img.shields.io/badge/license-BSD--2--Clause-blue)](LICENSE)
+
+---
+
+## 動作環境
+
+- Windows 10 / 11 (x64)
+- .NET 10.0 Desktop Runtime
 
 ---
 
@@ -12,14 +23,14 @@
 
 1. [Releases](https://github.com/njm2360/dekapu-skill-launcher/releases) から最新の `dekapu-skill-launcher.exe` をダウンロード
 2. 任意のフォルダに配置して実行
-  ※.NET 10.0 Desktop Runtime が必要です。未インストールの場合、初回起動時にダウンロードページが開きます。
+  ※ .NET 10.0 Desktop Runtime が必要です。未インストールの場合、初回起動時にダウンロードページが開きます。
 
 ### ソースからビルド
 
 ```bash
 git clone https://github.com/njm2360/dekapu-skill-launcher.git
 cd dekapu-skill-launcher
-dotnet publish -c Release -r win-x64 --self-contained
+dotnet publish -c Release -r win-x64
 ```
 
 ---

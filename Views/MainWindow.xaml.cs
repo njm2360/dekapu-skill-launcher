@@ -80,7 +80,7 @@ public partial class MainWindow : Window
     private void Table_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var row = _table.SelectedItem as InstanceRow;
-        _launchBtn.IsEnabled = row is not null && !row.IsClosed;
+        _launchBtn.IsEnabled = row is not null && !row.IsClosed && !string.IsNullOrEmpty(row.Id);
     }
 
     private async void FixedBtn_Click(object sender, RoutedEventArgs e)

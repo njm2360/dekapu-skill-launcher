@@ -9,13 +9,15 @@ namespace DekapuSkillLauncher;
 
 public partial class App : Application
 {
+    public static AppSettings Settings { get; private set; } = null!;
+
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
-        var s = AppSettings.Load();
-        if (!s.HardwareAcceleration)
+        Settings = AppSettings.Load();
+        if (!Settings.HardwareAcceleration)
             RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
-        LocaleManager.Apply(s.Language);
-        ThemeManager.Apply(s.Theme);
+        LocaleManager.Apply(Settings.Language);
+        ThemeManager.Apply(Settings.Theme);
     }
 }

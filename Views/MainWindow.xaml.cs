@@ -20,7 +20,7 @@ public partial class MainWindow : Window
     private static readonly Models.GroupItem[] Groups = GroupDefinitions.Groups;
 
     private readonly InstanceService _ctrl;
-    private readonly AppSettings _settings = AppSettings.Load();
+    private readonly AppSettings _settings = App.Settings;
     private readonly ObservableCollection<InstanceRow> _rows = new();
     private DateTimeOffset? _lastUpdatedAt;
     private bool _groupComboInitializing;

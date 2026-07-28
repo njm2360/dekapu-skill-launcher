@@ -24,6 +24,7 @@ public partial class MainWindow : Window
     private readonly ObservableCollection<InstanceRow> _rows = new();
     private DateTimeOffset? _lastUpdatedAt;
     private bool _groupComboInitializing;
+    private CancellationTokenSource? _updateCts;
 
     public MainWindow()
     {
@@ -157,23 +158,36 @@ public partial class MainWindow : Window
 
     private async Task UpdateInstancesAsync(bool refresh = false)
     {
+        // 進行中の更新をキャンセルし、このリクエストを最新とする
+        _updateCts?.Cancel();
+        var cts = new CancellationTokenSource();
+        _updateCts = cts;
+
         SetLoading(true);
 
         InstanceCache cache;
         try
         {
-            cache = await _ctrl.GetInstancesAsync(CurrentGroupId, refresh);
+            cache = await _ctrl.GetInstancesAsync(CurrentGroupId, refresh, cts.Token);
+        }
+        catch (OperationCanceledException) when (cts.Token.IsCancellationRequested)
+        {
+            return; // 新しい更新に置き換えられた
         }
         catch (Exception ex)
         {
+            if (_updateCts == cts)
+                SetLoading(false);
             MessageBox.Show(ex.Message, LocaleManager.Get("S.ErrTitle"),
                 MessageBoxButton.OK, MessageBoxImage.Error);
             return;
         }
-        finally
-        {
-            SetLoading(false);
-        }
+
+        // 完了直前に新しい更新が始まっていたら結果を捨てる
+        if (_updateCts != cts)
+            return;
+
+        SetLoading(false);
 
         _rows.Clear();
         var ordered = cache.Instances
@@ -198,6 +212,8 @@ public partial class MainWindow : Window
     private void SetLoading(bool loading)
     {
         _loadingOverlay.Visibility = loading ? Visibility.Visible : Visibility.Collapsed;
+        _refreshBtn.IsEnabled = !loading;
+        _groupCombo.IsEnabled = !loading;
     }
 
     private void LaunchSelected(bool silent = false)

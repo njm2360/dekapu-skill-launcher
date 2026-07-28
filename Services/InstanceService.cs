@@ -9,18 +9,18 @@ public class InstanceService(AppSettings settings)
     private static readonly HttpClient _client = new() { Timeout = TimeSpan.FromSeconds(30) };
     private readonly Dictionary<string, InstanceCache> _caches = [];
 
-    public async Task<InstanceCache> GetInstancesAsync(string groupId, bool refresh = false)
+    public async Task<InstanceCache> GetInstancesAsync(string groupId, bool refresh = false, CancellationToken cancellationToken = default)
     {
         if (!refresh && _caches.TryGetValue(groupId, out var cached))
             return cached;
 
-        var cache = await HttpRetryHelper.ExecuteAsync(async () =>
+        var cache = await HttpRetryHelper.ExecuteAsync(async ct =>
         {
-            var json = await _client.GetStringAsync($"{settings.ApiBaseUrl}/instances/{groupId}");
+            var json = await _client.GetStringAsync($"{settings.ApiBaseUrl}/instances/{groupId}", ct);
             var arr = JsonSerializer.Deserialize<JsonElement[]>(json)!;
             var instances = arr.Select(InstanceInfo.FromJson).ToList();
             return new InstanceCache(instances, DateTimeOffset.UtcNow);
-        });
+        }, cancellationToken: cancellationToken);
         _caches[groupId] = cache;
         return cache;
     }

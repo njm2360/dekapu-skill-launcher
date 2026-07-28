@@ -115,6 +115,7 @@
     <sys:String x:Key="S.ErrLaunchFailedMsg" xml:space="preserve">ランチャーの起動に失敗しました:&#x0a;{0}</sys:String>
     <sys:String x:Key="S.ErrUnexpectedMsg" xml:space="preserve">予期しないエラーが発生しました:&#x0a;{0}</sys:String>
     <sys:String x:Key="S.ErrAlreadyRunningMsg">アプリケーションは既に起動しています</sys:String>
+    <sys:String x:Key="S.ErrSettingsCorruptMsg" xml:space="preserve">設定ファイルの読み込みに失敗したため、設定を初期化しました。&#x0a;元のファイル: {0}</sys:String>
     <sys:String x:Key="S.VrcRunningMsg">VRChatが起動中のため起動できません。先にVRChatを終了してください。</sys:String>
     <sys:String x:Key="S.ErrNoCacheMsg">インスタンス一覧が読み込まれていません</sys:String>
     <sys:String x:Key="S.ErrInstanceNotFoundMsg">インスタンスが見つかりません</sys:String>

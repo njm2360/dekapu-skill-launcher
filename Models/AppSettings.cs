@@ -33,8 +33,9 @@ public class AppSettings
         Assembly.GetExecutingAssembly().GetName().Name!,
         "settings.json");
 
-    public static AppSettings Load()
+    public static AppSettings Load(out string? corruptedBackupPath)
     {
+        corruptedBackupPath = null;
         try
         {
             if (File.Exists(SettingsPath))
@@ -53,8 +54,25 @@ public class AppSettings
                 return s;
             }
         }
-        catch { }
+        catch
+        {
+            corruptedBackupPath = BackupCorruptedFile();
+        }
         return new();
+    }
+
+    private static string BackupCorruptedFile()
+    {
+        var backupPath = SettingsPath + ".bak";
+        try
+        {
+            File.Copy(SettingsPath, backupPath, overwrite: true);
+            return backupPath;
+        }
+        catch
+        {
+            return SettingsPath;
+        }
     }
 
     private static void MigrateFromV1(AppSettings s, string json)
@@ -65,6 +83,8 @@ public class AppSettings
     public void Save()
     {
         Directory.CreateDirectory(Path.GetDirectoryName(SettingsPath)!);
-        File.WriteAllText(SettingsPath, JsonSerializer.Serialize(this, SerializerOptions));
+        var tempPath = SettingsPath + ".tmp";
+        File.WriteAllText(tempPath, JsonSerializer.Serialize(this, SerializerOptions));
+        File.Move(tempPath, SettingsPath, overwrite: true);
     }
 }

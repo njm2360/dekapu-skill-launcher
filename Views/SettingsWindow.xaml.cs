@@ -42,20 +42,20 @@ public partial class SettingsWindow : Window
     {
         if (!int.TryParse(_profileBox.Text, out var profile) || profile < 0 || profile > 99)
         {
-            MessageBox.Show(LocaleManager.Get("S.ErrProfileMsg"), LocaleManager.Get("S.ErrInput"),
+            MessageBox.Show(this, LocaleManager.Get("S.ErrProfileMsg"), LocaleManager.Get("S.ErrInput"),
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
         if (!int.TryParse(_oscPortBox.Text, out var oscPort) || oscPort < 1 || oscPort > 65535)
         {
-            MessageBox.Show(LocaleManager.Get("S.ErrPortMsg"), LocaleManager.Get("S.ErrInput"),
+            MessageBox.Show(this, LocaleManager.Get("S.ErrPortMsg"), LocaleManager.Get("S.ErrInput"),
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
         var oscAddress = _oscAddressBox.Text.Trim();
         if (!oscAddress.StartsWith('/'))
         {
-            MessageBox.Show(LocaleManager.Get("S.ErrOscAddressMsg"), LocaleManager.Get("S.ErrInput"),
+            MessageBox.Show(this, LocaleManager.Get("S.ErrOscAddressMsg"), LocaleManager.Get("S.ErrInput"),
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }

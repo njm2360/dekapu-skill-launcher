@@ -98,7 +98,7 @@ public partial class LaunchOptionsWindow : Window
         var fpsText = _fpsBox.Text.Trim();
         if (!string.IsNullOrEmpty(fpsText) && (!int.TryParse(fpsText, out fps) || fps < 0))
         {
-            MessageBox.Show(LocaleManager.Get("S.ErrFpsMsg"), LocaleManager.Get("S.ErrInput"),
+            MessageBox.Show(this, LocaleManager.Get("S.ErrFpsMsg"), LocaleManager.Get("S.ErrInput"),
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
@@ -110,13 +110,13 @@ public partial class LaunchOptionsWindow : Window
         {
             if (oscInPort < 1 || oscInPort > 65535)
             {
-                MessageBox.Show(LocaleManager.Get("S.ErrOscInPortMsg"), LocaleManager.Get("S.ErrInput"),
+                MessageBox.Show(this, LocaleManager.Get("S.ErrOscInPortMsg"), LocaleManager.Get("S.ErrInput"),
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             if (oscOutPort < 1 || oscOutPort > 65535)
             {
-                MessageBox.Show(LocaleManager.Get("S.ErrOscOutPortMsg"), LocaleManager.Get("S.ErrInput"),
+                MessageBox.Show(this, LocaleManager.Get("S.ErrOscOutPortMsg"), LocaleManager.Get("S.ErrInput"),
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
@@ -127,14 +127,14 @@ public partial class LaunchOptionsWindow : Window
         if (!string.IsNullOrEmpty(_screenWidthBox.Text.Trim()) &&
             (!int.TryParse(_screenWidthBox.Text, out screenWidth) || screenWidth <= 0))
         {
-            MessageBox.Show(LocaleManager.Get("S.ErrScreenWidthMsg"), LocaleManager.Get("S.ErrInput"),
+            MessageBox.Show(this, LocaleManager.Get("S.ErrScreenWidthMsg"), LocaleManager.Get("S.ErrInput"),
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
         if (!string.IsNullOrEmpty(_screenHeightBox.Text.Trim()) &&
             (!int.TryParse(_screenHeightBox.Text, out screenHeight) || screenHeight <= 0))
         {
-            MessageBox.Show(LocaleManager.Get("S.ErrScreenHeightMsg"), LocaleManager.Get("S.ErrInput"),
+            MessageBox.Show(this, LocaleManager.Get("S.ErrScreenHeightMsg"), LocaleManager.Get("S.ErrInput"),
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
@@ -144,7 +144,7 @@ public partial class LaunchOptionsWindow : Window
         if (!string.IsNullOrEmpty(_monitorBox.Text.Trim()) &&
             (!int.TryParse(_monitorBox.Text, out monitor) || monitor < 1))
         {
-            MessageBox.Show(LocaleManager.Get("S.ErrMonitorMsg"), LocaleManager.Get("S.ErrInput"),
+            MessageBox.Show(this, LocaleManager.Get("S.ErrMonitorMsg"), LocaleManager.Get("S.ErrInput"),
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }

@@ -52,7 +52,7 @@ public partial class MainWindow : Window
         try { _settings.Save(); }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, LocaleManager.Get("S.ErrTitle"),
+            MessageBox.Show(this,ex.Message, LocaleManager.Get("S.ErrTitle"),
                 MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
@@ -91,7 +91,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, LocaleManager.Get("S.ErrOscTitle"),
+            MessageBox.Show(this,ex.Message, LocaleManager.Get("S.ErrOscTitle"),
                 MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
@@ -104,7 +104,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, LocaleManager.Get("S.ErrOscTitle"),
+            MessageBox.Show(this,ex.Message, LocaleManager.Get("S.ErrOscTitle"),
                 MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
@@ -118,7 +118,7 @@ public partial class MainWindow : Window
         try { _settings.Save(); }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, LocaleManager.Get("S.ErrTitle"),
+            MessageBox.Show(this,ex.Message, LocaleManager.Get("S.ErrTitle"),
                 MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         ThemeManager.Apply(_settings.Theme);
@@ -165,7 +165,7 @@ public partial class MainWindow : Window
         {
             if (_updateCts == cts)
                 SetLoading(false);
-            MessageBox.Show(ex.Message, LocaleManager.Get("S.ErrTitle"),
+            MessageBox.Show(this,ex.Message, LocaleManager.Get("S.ErrTitle"),
                 MessageBoxButton.OK, MessageBoxImage.Error);
             return;
         }
@@ -214,7 +214,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, LocaleManager.Get("S.ErrTitle"),
+            MessageBox.Show(this,ex.Message, LocaleManager.Get("S.ErrTitle"),
                 MessageBoxButton.OK, MessageBoxImage.Error);
             return;
         }
@@ -222,7 +222,7 @@ public partial class MainWindow : Window
         if (!silent)
         {
             var name = inst.DisplayName ?? inst.Name;
-            var confirm = MessageBox.Show(
+            var confirm = MessageBox.Show(this,
                 string.Format(LocaleManager.Get("S.DlgLaunchMsg"), name),
                 LocaleManager.Get("S.DlgConfirmTitle"),
                 MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -242,7 +242,7 @@ public partial class MainWindow : Window
     {
         if (_settings.CheckVrcProcess && Process.GetProcessesByName("VRChat").Length > 0)
         {
-            MessageBox.Show(LocaleManager.Get("S.VrcRunningMsg"),
+            MessageBox.Show(this,LocaleManager.Get("S.VrcRunningMsg"),
                 LocaleManager.Get("S.ErrTitle"),
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
@@ -250,7 +250,7 @@ public partial class MainWindow : Window
 
         if (!File.Exists(_settings.LauncherPath))
         {
-            MessageBox.Show(string.Format(LocaleManager.Get("S.ErrNoLauncher"), _settings.LauncherPath),
+            MessageBox.Show(this,string.Format(LocaleManager.Get("S.ErrNoLauncher"), _settings.LauncherPath),
                 LocaleManager.Get("S.ErrTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
             return;
         }
@@ -273,7 +273,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            MessageBox.Show(string.Format(LocaleManager.Get("S.ErrLaunchFailedMsg"), ex.Message),
+            MessageBox.Show(this,string.Format(LocaleManager.Get("S.ErrLaunchFailedMsg"), ex.Message),
                 LocaleManager.Get("S.ErrTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }

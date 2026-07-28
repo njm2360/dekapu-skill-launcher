@@ -28,7 +28,7 @@ public partial class App : Application
         TaskScheduler.UnobservedTaskException += (_, args) => args.SetObserved();
 
         base.OnStartup(e);
-        Settings = AppSettings.Load();
+        Settings = AppSettings.Load(out var settingsBackupPath);
         if (!Settings.HardwareAcceleration)
             RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
         LocaleManager.Apply(Settings.Language);
@@ -42,6 +42,13 @@ public partial class App : Application
             MessageBox.Show(LocaleManager.Get("S.ErrAlreadyRunningMsg"),
                 LocaleManager.Get("S.ErrTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
             Shutdown();
+            return;
+        }
+
+        if (settingsBackupPath is not null)
+        {
+            MessageBox.Show(string.Format(LocaleManager.Get("S.ErrSettingsCorruptMsg"), settingsBackupPath),
+                LocaleManager.Get("S.ErrTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 

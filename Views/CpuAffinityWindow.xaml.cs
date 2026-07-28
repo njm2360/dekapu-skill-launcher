@@ -138,7 +138,8 @@ public partial class CpuAffinityWindow : Window
 
     private void OkBtn_Click(object sender, RoutedEventArgs e)
     {
-        AffinityHex = _hexBox.Text.Trim();
+        var mask = MaskFromCheckBoxes();
+        AffinityHex = mask == 0 ? "" : mask.ToString($"X{_hexDigits}");
         DialogResult = true;
     }
 

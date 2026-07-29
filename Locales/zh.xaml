@@ -115,7 +115,7 @@
     <sys:String x:Key="S.DlgLaunchMsg" xml:space="preserve">是否在以下实例中启动？&#x0a;&#x0a;名称: {0}</sys:String>
     <sys:String x:Key="S.ErrNoLauncher" xml:space="preserve">找不到启动器:&#x0a;{0}</sys:String>
     <sys:String x:Key="S.ErrLaunchFailedMsg" xml:space="preserve">启动器启动失败:&#x0a;{0}</sys:String>
-    <sys:String x:Key="S.ErrUnexpectedMsg" xml:space="preserve">发生意外错误:&#x0a;{0}</sys:String>
+    <sys:String x:Key="S.ErrUnexpectedMsg" xml:space="preserve">发生意外错误，应用程序将退出。&#x0a;&#x0a;{0}&#x0a;&#x0a;错误日志&#x0a;{1}</sys:String>
     <sys:String x:Key="S.ErrAlreadyRunningMsg">应用程序已在运行</sys:String>
     <sys:String x:Key="S.ErrSettingsCorruptMsg" xml:space="preserve">设置文件加载失败，已重置为默认设置。&#x0a;原文件: {0}</sys:String>
     <sys:String x:Key="S.VrcRunningMsg">VRChat 正在运行，无法启动。请先关闭 VRChat。</sys:String>

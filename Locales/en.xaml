@@ -115,7 +115,7 @@
     <sys:String x:Key="S.DlgLaunchMsg" xml:space="preserve">Launch this instance?&#x0a;&#x0a;Name: {0}</sys:String>
     <sys:String x:Key="S.ErrNoLauncher" xml:space="preserve">VRChat launcher not found:&#x0a;{0}</sys:String>
     <sys:String x:Key="S.ErrLaunchFailedMsg" xml:space="preserve">Failed to start the launcher:&#x0a;{0}</sys:String>
-    <sys:String x:Key="S.ErrUnexpectedMsg" xml:space="preserve">An unexpected error occurred:&#x0a;{0}</sys:String>
+    <sys:String x:Key="S.ErrUnexpectedMsg" xml:space="preserve">An unexpected error occurred. The application will exit.&#x0a;&#x0a;{0}&#x0a;&#x0a;Error log&#x0a;{1}</sys:String>
     <sys:String x:Key="S.ErrAlreadyRunningMsg">The application is already running</sys:String>
     <sys:String x:Key="S.ErrSettingsCorruptMsg" xml:space="preserve">Failed to load the settings file, so settings have been reset.&#x0a;Original file: {0}</sys:String>
     <sys:String x:Key="S.VrcRunningMsg">VRChat is already running. Please close it before launching.</sys:String>

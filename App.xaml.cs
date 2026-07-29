@@ -1,6 +1,7 @@
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 using DekapuSkillLauncher.Models;
 using DekapuSkillLauncher.Services;
@@ -15,17 +16,9 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        DispatcherUnhandledException += (_, args) =>
-        {
-            ShowUnexpectedError(args.Exception);
-            args.Handled = true;
-        };
-        AppDomain.CurrentDomain.UnhandledException += (_, args) =>
-        {
-            if (args.ExceptionObject is Exception ex)
-                ShowUnexpectedError(ex);
-        };
-        TaskScheduler.UnobservedTaskException += (_, args) => args.SetObserved();
+        DispatcherUnhandledException += OnDispatcherUnhandledException;
+        AppDomain.CurrentDomain.UnhandledException += OnAppDomainUnhandledException;
+        TaskScheduler.UnobservedTaskException += OnUnobservedTaskException;
 
         base.OnStartup(e);
         Settings = AppSettings.Load(out var settingsBackupPath);
@@ -62,12 +55,30 @@ public partial class App : Application
         base.OnExit(e);
     }
 
-    private static void ShowUnexpectedError(Exception ex)
+    private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
     {
+        e.Handled = true;
+        HandleFatal("DispatcherUnhandledException", e.Exception);
+    }
+
+    private static void OnAppDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
+    {
+        CrashLogger.Log("AppDomainUnhandledException", e.ExceptionObject as Exception);
+    }
+
+    private static void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
+    {
+        CrashLogger.Log("UnobservedTaskException", e.Exception);
+    }
+
+    private void HandleFatal(string source, Exception ex)
+    {
+        CrashLogger.Log(source, ex);
+
         string message, title;
         try
         {
-            message = string.Format(LocaleManager.Get("S.ErrUnexpectedMsg"), ex.Message);
+            message = string.Format(LocaleManager.Get("S.ErrUnexpectedMsg"), ex.Message, CrashLogger.LogPath);
             title = LocaleManager.Get("S.ErrTitle");
         }
         catch
@@ -76,5 +87,7 @@ public partial class App : Application
             title = "Error";
         }
         MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
+
+        Shutdown(1);
     }
 }

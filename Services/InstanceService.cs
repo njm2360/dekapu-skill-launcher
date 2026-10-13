@@ -1,4 +1,6 @@
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Reflection;
 using System.Text.Json;
 using DekapuSkillLauncher.Models;
 
@@ -6,8 +8,17 @@ namespace DekapuSkillLauncher.Services;
 
 public class InstanceService(AppSettings settings)
 {
-    private static readonly HttpClient _client = new() { Timeout = TimeSpan.FromSeconds(30) };
+    private static readonly HttpClient _client = CreateClient();
     private readonly Dictionary<string, InstanceCache> _caches = [];
+
+    private static HttpClient CreateClient()
+    {
+        var name = Assembly.GetExecutingAssembly().GetName();
+        var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };
+        client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(
+            name.Name!, $"{name.Version?.Major}.{name.Version?.Minor}.{name.Version?.Build}"));
+        return client;
+    }
 
     public async Task<InstanceCache> GetInstancesAsync(string groupId, bool refresh = false, CancellationToken cancellationToken = default)
     {
